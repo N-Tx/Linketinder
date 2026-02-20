@@ -1,1 +1,99 @@
+
 # Linketinder
+# 💘🧑‍💼 Linketinder
+
+> Sistema de recrutamento inspirado no LinkedIn + Tinder.
+> MVP desenvolvido em Groovy para simular conexões entre candidatos e empresas através de competências (skills).
+
+---
+
+## 📌 Sobre o Projeto
+
+O *Linketinder* é uma aplicação com o objetivo de tornar o processo de recrutamento mais prático, justo e eficiente.
+
+A proposta é combinar:
+
+- 🔹 O sistema de *match* do Tinder
+- 🔹 O campo de *competências (skills)* do LinkedIn
+- 🔹 A relação direta entre candidato e empresa
+
+O sistema surge como alternativa às soluções tradicionais, que muitas vezes retornam dados tendenciosos e favorecem perfis mais populares ao invés de perfis com real potencial técnico.
+
+Este projeto representa um *MVP (Minimum Viable Product)* da solução.
+
+---
+
+## 🎯 Objetivo do MVP
+
+Criar uma aplicação simples em terminal que:
+
+- Armazene candidatos e empresas
+- Permita visualizar os dados cadastrados
+- Estruture competências para futuras funcionalidades de match
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- Groovy
+- Java (JVM)
+- Git
+- GitHub
+
+---
+
+## 📋 Requisitos Implementados
+
+### ✅ Requisitos Obrigatórios
+
+- Array com no mínimo *5 candidatos pré-cadastrados*
+- Cada candidato contém:
+  - Nome
+  - E-mail
+  - CPF
+  - Idade
+  - Estado
+  - CEP
+  - Descrição pessoal
+  - Array de competências (ex: Python, Java, Spring, Angular)
+
+- Array com no mínimo *5 empresas pré-cadastradas*
+- Cada empresa contém:
+  - Nome
+  - E-mail corporativo
+  - CNPJ
+  - País
+  - Estado
+  - CEP
+  - Descrição da empresa
+  - Array de competências esperadas
+
+- Menu simples no terminal com opções para:
+  - Listar candidatos
+  - Listar empresas
+
+---
+
+### 🔶 Requisitos Opcionais (Possível Evolução)
+
+- Cadastro de novos candidatos
+- Cadastro de novas empresas
+- Implementação futura de sistema de match
+
+---
+
+## 🏗 Estrutura do Projeto
+
+
+text
+Linketinder/
+├── src/
+│   ├── model/
+│   │   ├── Pessoa.groovy
+│   │   ├── Candidato.groovy
+│   │   └── Empresa.groovy
+│   ├── service/
+│   │   └── Menu.groovy
+│   └── app/
+│       └── Main.groovy
+└── README.md
