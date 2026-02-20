@@ -85,15 +85,18 @@ Criar uma aplicação simples em terminal que:
 ## 🏗 Estrutura do Projeto
 
 
-text
-Linketinder/
-├── src/
-│   ├── model/
+## Estrutura do Projeto
+
+```text
+📁Linketinder/
+├── 📁src/
+│   ├── 📁model/
 │   │   ├── Pessoa.groovy
 │   │   ├── Candidato.groovy
 │   │   └── Empresa.groovy
-│   ├── service/
+│   ├── 📁service/
 │   │   └── Menu.groovy
-│   └── app/
+│   └── 📁app/
 │       └── Main.groovy
 └── README.md
+```
