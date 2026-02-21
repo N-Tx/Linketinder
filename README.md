@@ -113,9 +113,10 @@ Criar uma aplicação simples em terminal que:
 
   No projeto:
 
-  aparecerá o terminal com 
+  aparecerá o terminal:
 
-  1.Candidato - entrará na área de candidatos onde apareceça as empresas para dar match ou passar
-  2.Empresa - entrará na área de empresas onde apareceça os candidatos para dar match ou passar
-  3.Listar empresa - listará o NOME das empresas
-  4.Listar Candidatos - listará o NOME dos candidatos 
+```text
+1. Candidato - entrará na área de candidatos, onde aparecerão as empresas para dar match ou passar
+2. Empresa - entrará na área de empresas, onde aparecerão os candidatos para dar match ou passar
+3. Listar empresas - listará o NOME das empresas
+4. Listar candidatos - listará o NOME dos candidatos
