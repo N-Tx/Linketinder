@@ -7,7 +7,6 @@ class Menu {
     CadastroService service
     Scanner scanner = new Scanner(System.in)
 
-    // CONSTRUTOR OBRIGATÓRIO
     Menu(CadastroService service) {
         this.service = service
     }
@@ -40,6 +39,9 @@ class Menu {
                     println "#################x"
                     println "Área da empresa"
                     println "#################"
+                    println()
+                    visualizarCandidatos()
+
                     break
                 case 3:
                     listAllEmpresas()
@@ -84,6 +86,10 @@ class Menu {
             println "Nome: ${empresa.nome}"
             println "Email: ${empresa.email}"
             println "CNPJ: ${empresa.cnpj}"
+            println "Pais: ${empresa.pais}"
+            println "Estado: ${empresa.estado}"
+            println "Cep: ${empresa.cep}"
+            println "Descrição: ${empresa.descricao}"
             println "Skills desejadas: ${empresa.skills}"
 
             println "\nPressione 1 para dar match ou 2 para passar"
@@ -96,6 +102,39 @@ class Menu {
             index++
         }
     }
+    }
+    void visualizarCandidatos() {
+
+        if (service.users.isEmpty()) {
+            println "Nenhum candidato cadastrado."
+            return
+        }
+
+        int index = 0
+
+        while (index < service.users.size()) {
+
+            def user = service.users[index]
+
+            println "\n===== CANDIDATO ${index + 1} ====="
+            println "Nome: ${user.nome}"
+            println "Email: ${user.email}"
+            println "CPF: ${user.cpf}"
+            println "Idade: ${user.idade}"
+            println "CEP: ${user.cep}"
+            println "Descrição: ${user.descricao}"
+            println "Skills: ${user.skills}"
+
+            println "\nPressione 1 para dar match ou 2 para passar"
+            def entrada = scanner.nextLine()
+
+            if (entrada == "1") {
+                service.matchesEmpresa << user
+                println "✅ Match realizado!"
+            }
+
+            index++
+        }
     }
 
 }

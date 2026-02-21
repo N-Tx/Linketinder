@@ -7,5 +7,5 @@ class Pessoa {
     String estado;
     String cep;
     String descricao;
-    String skills;
+    List<String> skills = []
 }
