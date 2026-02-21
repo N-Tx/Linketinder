@@ -31,10 +31,15 @@ class Menu {
 
             switch (opc){
                 case 1:
+                    println "##################"
+                    println "Área do candidato"
+                    println "##################"
                     visualizarEmpresas()
                     break
                 case 2:
+                    println "#################x"
                     println "Área da empresa"
+                    println "#################"
                     break
                 case 3:
                     listAllEmpresas()
