@@ -7,8 +7,9 @@ import java.util.Scanner
 
 class Menu {
 
-    CadastroService service
+
     Scanner scanner = new Scanner(System.in)
+    CadastroService service
 
     Menu(CadastroService service) {
         this.service = service
@@ -55,6 +56,7 @@ class Menu {
                     listAllCandidato()
                     break
                 case 5:
+                    CadastroUser()
                     break
                 case 6:
                     CadastroEnterprise()
@@ -148,9 +150,6 @@ class Menu {
     }
 
     void CadastroEnterprise() {
-
-        def scanner = new Scanner(System.in)
-
         println "Nome da empresa:"
         def nome = scanner.nextLine()
 
@@ -176,7 +175,7 @@ class Menu {
         def skillsInput = scanner.nextLine()
         def skills = skillsInput.split(",")*.trim()
 
-        enterprises << new Enterprise(
+        def novaEmpresa = new Enterprise(
                 nome: nome,
                 email: email,
                 cnpj: cnpj,
@@ -187,7 +186,55 @@ class Menu {
                 skills: skills
         )
 
+        service.cadastrarEmpresa(novaEmpresa)
+
         println "Empresa cadastrada com sucesso!"
     }
+
+    void CadastroUser() {
+
+        println "Nome do candidato:"
+        def nome = scanner.nextLine()
+
+        println "Email:"
+        def email = scanner.nextLine()
+
+        println "CPF:"
+        def cpf = scanner.nextLine()
+
+        println "Idade:"
+        def idade = scanner.nextInt()
+        scanner.nextLine() // limpa buffer
+
+        println "Estado:"
+        def estado = scanner.nextLine()
+
+        println "CEP:"
+        def cep = scanner.nextLine()
+
+        println "Descrição:"
+        def descricao = scanner.nextLine()
+
+        println "Skills (separadas por vírgula):"
+        def skillsInput = scanner.nextLine()
+        def skills = skillsInput.split(",")*.trim()
+
+        def novoUsuario = new User(
+                nome: nome,
+                email: email,
+                cpf: cpf,
+                idade: idade,
+                estado: estado,
+                cep: cep,
+                descricao: descricao,
+                skills: skills
+        )
+
+        service.cadastrarUsuario(novoUsuario)
+
+        println "Candidato cadastrado com sucesso!"
+    }
+
 }
+
 

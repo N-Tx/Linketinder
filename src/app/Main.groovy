@@ -7,9 +7,10 @@ class Main {
 
     static void main(String[] args) {
 
-        CadastroService service = new CadastroService()
-        service.cadastrar()
+        def service = new CadastroService()
         def menu = new Menu(service)
+
         menu.iniciar()
+
     }
 }

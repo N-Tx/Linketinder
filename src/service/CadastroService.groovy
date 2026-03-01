@@ -17,9 +17,8 @@ class CadastroService {
 
     //construtor
     CadastroService(){
-        carregarDadosInicias()
+        carregarDadosIniciais()
     }
-
     private void carregarDadosIniciais(){
 
         users << new User(
@@ -139,6 +138,5 @@ class CadastroService {
 
     void cadastrarEmpresa(Enterprise enterprise){
         enterprises << enterprise
-
     }
-    }
+}
