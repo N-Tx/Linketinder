@@ -1,5 +1,8 @@
 package service
 
+import model.Enterprise
+import model.User
+
 import java.util.Scanner
 
 class Menu {
@@ -22,6 +25,8 @@ class Menu {
             println "2. Empresa"
             println "3. Listar empresas"
             println "4. Listar candidatos"
+            println "5. Adicionar candidato"
+            println "6. Adicionar empresa"
             println "0. Sair"
             println "==========================="
 
@@ -48,6 +53,11 @@ class Menu {
                     break
                 case 4:
                     listAllCandidato()
+                    break
+                case 5:
+                    break
+                case 6:
+                    CadastroEnterprise()
                     break
                 case 0:
                     return
@@ -137,4 +147,47 @@ class Menu {
         }
     }
 
+    void CadastroEnterprise() {
+
+        def scanner = new Scanner(System.in)
+
+        println "Nome da empresa:"
+        def nome = scanner.nextLine()
+
+        println "Email:"
+        def email = scanner.nextLine()
+
+        println "CNPJ:"
+        def cnpj = scanner.nextLine()
+
+        println "País:"
+        def pais = scanner.nextLine()
+
+        println "Estado:"
+        def estado = scanner.nextLine()
+
+        println "CEP:"
+        def cep = scanner.nextLine()
+
+        println "Descrição:"
+        def descricao = scanner.nextLine()
+
+        println "Skills (separadas por vírgula):"
+        def skillsInput = scanner.nextLine()
+        def skills = skillsInput.split(",")*.trim()
+
+        enterprises << new Enterprise(
+                nome: nome,
+                email: email,
+                cnpj: cnpj,
+                pais: pais,
+                estado: estado,
+                cep: cep,
+                descricao: descricao,
+                skills: skills
+        )
+
+        println "Empresa cadastrada com sucesso!"
+    }
 }
+

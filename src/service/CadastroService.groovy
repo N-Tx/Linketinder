@@ -15,7 +15,12 @@ class CadastroService {
     List<User> matchesEmpresa = []
 
 
-    void cadastrar(){
+    //construtor
+    CadastroService(){
+        carregarDadosInicias()
+    }
+
+    private void carregarDadosIniciais(){
 
         users << new User(
                 nome: "Nathan",
@@ -127,4 +132,13 @@ class CadastroService {
                 skills: ["DevOps", "Kubernetes", "Terraform"]
         )
     }
-}
+
+    void cadastrarUsuario(User user){
+        users << user
+    }
+
+    void cadastrarEmpresa(Enterprise enterprise){
+        enterprises << enterprise
+
+    }
+    }
