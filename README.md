@@ -1,6 +1,7 @@
 
 # Linketinder
 # 💘🧑‍💼 Linketinder
+Autor: Nathan Teixeira de Oliveira
 
 > Sistema de recrutamento inspirado no LinkedIn + Tinder.
 > MVP desenvolvido em Groovy para simular conexões entre candidatos e empresas através de competências (skills).
@@ -100,3 +101,22 @@ Criar uma aplicação simples em terminal que:
 │       └── Main.groovy
 └── README.md
 ```
+## 💻 Como Executar
+
+1. Certifique-se de ter o **Groovy** instalado:  
+   ```bash
+   groovy --version
+2. Navegue até a pasta do projeto
+   cd Linketinder/src/app
+3. Execute o programa
+   groovy Main.groovy
+
+  No projeto:
+
+  aparecerá o terminal:
+
+```text
+1. Candidato - entrará na área de candidatos, onde aparecerão as empresas para dar match ou passar
+2. Empresa - entrará na área de empresas, onde aparecerão os candidatos para dar match ou passar
+3. Listar empresas - listará o NOME das empresas
+4. Listar candidatos - listará o NOME dos candidatos
