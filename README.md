@@ -89,16 +89,22 @@ Criar uma aplicação simples em terminal que:
 ## Estrutura do Projeto
 
 ```text
-📁Linketinder/
-├── 📁src/
-│   ├── 📁model/
+📁 Linketinder/
+├── 📁 src/
+│   ├── 📁 app/                   
+│   │   └── Main.groovy
+│   │
+│   ├── 📁 model/                  
 │   │   ├── Pessoa.groovy
-│   │   ├── Candidato.groovy
-│   │   └── Empresa.groovy
-│   ├── 📁service/
-│   │   └── Menu.groovy
-│   └── 📁app/
-│       └── Main.groovy
+│   │   ├── User.groovy
+│   │   ├── Enterprise.groovy
+│   │   ├── MatchCandidato.groovy
+│   │   └── MatchEmpresa.groovy
+│   │
+│   └── 📁 service/                
+│       ├── CadastroService.groovy
+│       └── Menu.groovy
+│
 └── README.md
 ```
 ## 💻 Como Executar
@@ -120,3 +126,62 @@ Criar uma aplicação simples em terminal que:
 2. Empresa - entrará na área de empresas, onde aparecerão os candidatos para dar match ou passar
 3. Listar empresas - listará o NOME das empresas
 4. Listar candidatos - listará o NOME dos candidatos
+```
+
+## 🧪 Teste únitario (TDD)
+
+Os testes seguem o princípio de:
+
+Testar comportamento, não implementação.
+
+Ou seja, não testamos se foi usado << na lista,
+mas sim se o sistema realmente passou a conter o novo elemento após o cadastro.
+
+
+O que foi testado?
+
+✔ Cadastro de novo candidato
+
+✔ Cadastro de nova empresa
+
+O teste valida que:
+
+O tamanho da lista de usuários aumenta após o cadastro.
+
+O novo usuário é realmente adicionado à lista.
+
+O último elemento da lista corresponde ao usuário inserido.
+
+
+## 🛠 Tecnologias utilizadas 
+
+- ☕ Java 17
+
+- 🐍 Groovy 3.x
+
+- 🧪 JUnit 5
+
+## Nova estrutura do projeto (com TDD)
+
+```text
+📁 Linketinder/
+├── 📁 src/
+│   ├── 📁 app/                  
+│   │   └── Main.groovy
+│   │
+│   ├── 📁 model/                
+│   │   ├── Pessoa.groovy
+│   │   ├── User.groovy
+│   │   ├── Enterprise.groovy
+│   │   ├── MatchCandidato.groovy
+│   │   └── MatchEmpresa.groovy
+│   │
+│   └── 📁 service/               
+│       ├── CadastroService.groovy
+│       └── Menu.groovy
+│
+├── 📁 test/                        
+│   └── 📁 service/
+│       └── CadastroServiceTest.groovy
+│
+└── README.md
