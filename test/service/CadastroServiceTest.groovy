@@ -39,6 +39,29 @@ class CadastroServiceTest {
 
         assertTrue(service.users.contains(novoUser))
     }
+    @Test
+    void deveCadastrarNovaEmpresa() {
+        int tamanhoInicial = service.enterprises.size()
+
+        def novaEmpresa = new Enterprise(
+                nome: "NovaTech",
+                email: "contato@novatech.com",
+                cnpj: "9999",
+                pais: "Brasil",
+                estado: "SP",
+                cep: "00000-000",
+                descricao: "Empresa de tecnologia",
+                skills: ["AWS", "Docker"]
+        )
+
+        service.cadastrarEmpresa(novaEmpresa)
+
+        assertEquals(tamanhoInicial + 1, service.enterprises.size())
+
+        assertTrue(service.enterprises.contains(novaEmpresa))
+    }
+
+
 
 
 }
