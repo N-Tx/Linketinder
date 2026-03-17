@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil Empresa</title>
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Candidatos (anônimo)</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Skills</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaCandidatos"></tbody>
+    </table>
+
+    <h2>Gráfico de competências</h2>
+    <canvas id="grafico"></canvas>
+
+    <button onclick="gerarGrafico()">Gerar gráfico</button>
+
+    <a href="../index.html">Voltar</a>
+</div>
+
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

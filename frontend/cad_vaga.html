@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Vaga</title>
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Cadastrar Vaga</h2>
+
+    <form onsubmit="cadastrarVaga(event)">
+        <input id="titulo" type="text" placeholder="Título da vaga" required>
+        <textarea id="descricao" placeholder="Descrição da vaga" required></textarea>
+        <input id="skills" type="text" placeholder="Skills necessárias (ex: Java, TS)" required>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+    
+    <a href="src/perfil_empresa.html">Ir para perfil empresa</a>
+</div>
+
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>
