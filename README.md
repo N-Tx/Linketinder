@@ -186,8 +186,10 @@ O último elemento da lista corresponde ao usuário inserido.
 │
 └── README.md
 
+```
 
-## Nova estrutura do projeto (com frontend)
+
+## 🚀 Nova estrutura do projeto (com frontend)
 
 ```text
 Linketinder/
@@ -233,23 +235,44 @@ Linketinder/
 │       └── CadastroServiceTest.groovy
 └── README.md
 
+```
 
-🚀 Como Rodar o Projeto (parte frontend)
+## 🚀 Como Rodar o Projeto (parte frontend)
+
 🌐 Frontend (Vite + TypeScript)
+
 Certifique-se de ter o Node.js instalado em sua máquina.
 
 Navegue até a pasta do frontend:
 
 Bash:
+
 cd frontend
 
 Instale as dependências:
 
 Bash: 
+
 npm install
 Inicie o servidor de desenvolvimento:
 
 Bash
 npm run dev
 
-Após rodar o comando, o Vite informará uma URL (geralmente http://localhost:5173). Abra este endereço no seu navegador para visualizar o Linketinder.
+Após rodar o comando, o Vite informará uma URL (geralmente http://localhost:5173). 
+
+Abra este endereço no seu navegador para visualizar o Linketinder.
+
+
+
+## 🛠️ Tecnologias Utilizadas (Frontend)
+
+- Vite: Build tool ultra-rápida para o desenvolvimento moderno.
+
+- TypeScript: Tipagem estática para garantir maior segurança e menos erros no código JavaScript.
+
+- HTML5 & CSS3: Estruturação e estilização da interface com foco em responsividade.
+
+- Programação Orientada a Objetos (POO): Organização do código TypeScript utilizando classes, interfaces etc.
+
+
