@@ -185,3 +185,71 @@ O último elemento da lista corresponde ao usuário inserido.
 │       └── CadastroServiceTest.groovy
 │
 └── README.md
+
+
+## Nova estrutura do projeto (com frontend)
+
+```text
+Linketinder/
+├── frontend/
+│   ├── src/
+│   │   ├── controllers/
+│   │   │   ├── candidatoController.ts
+│   │   │   ├── empresaController.ts
+│   │   │   ├── listagem.ts
+│   │   │   └── vagaController.ts
+│   │   ├── models/
+│   │   │   ├── Candidato.ts
+│   │   │   ├── Empresa.ts
+│   │   │   ├── TS.ts
+│   │   │   └── Vaga.ts
+│   │   ├── services/
+│   │   │   ├── dbFake.ts
+│   │   │   └── counter.ts
+│   │   ├── style.css
+│   │   └── main.ts
+│   ├── cad_candidato.html
+│   ├── cad_empresa.html
+│   ├── cad_vaga.html
+│   ├── index.html
+│   ├── perfil_candidato.html
+│   ├── perfil_empresa.html
+│   ├── package.json
+│   └── tsconfig.json
+├── src/ (Backend Groovy)
+│   ├── app/
+│   │   └── Main.groovy
+│   ├── model/
+│   │   ├── Pessoa.groovy
+│   │   ├── User.groovy
+│   │   ├── Enterprise.groovy
+│   │   ├── MatchCandidato.groovy
+│   │   └── MatchEmpresa.groovy
+│   └── service/
+│       ├── CadastroService.groovy
+│       └── Menu.groovy
+├── test/
+│   └── service/
+│       └── CadastroServiceTest.groovy
+└── README.md
+
+
+🚀 Como Rodar o Projeto (parte frontend)
+🌐 Frontend (Vite + TypeScript)
+Certifique-se de ter o Node.js instalado em sua máquina.
+
+Navegue até a pasta do frontend:
+
+Bash:
+cd frontend
+
+Instale as dependências:
+
+Bash: 
+npm install
+Inicie o servidor de desenvolvimento:
+
+Bash
+npm run dev
+
+Após rodar o comando, o Vite informará uma URL (geralmente http://localhost:5173). Abra este endereço no seu navegador para visualizar o Linketinder.
