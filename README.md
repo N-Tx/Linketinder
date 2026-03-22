@@ -193,46 +193,69 @@ O último elemento da lista corresponde ao usuário inserido.
 
 ```text
 Linketinder/
+│
 ├── frontend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   │   ├── candidatoController.ts
-│   │   │   ├── empresaController.ts
-│   │   │   ├── listagem.ts
-│   │   │   └── vagaController.ts
-│   │   ├── models/
-│   │   │   ├── Candidato.ts
-│   │   │   ├── Empresa.ts
-│   │   │   ├── TS.ts
-│   │   │   └── Vaga.ts
-│   │   ├── services/
-│   │   │   ├── dbFake.ts
-│   │   │   └── counter.ts
-│   │   ├── style.css
-│   │   └── main.ts
-│   ├── cad_candidato.html
-│   ├── cad_empresa.html
-│   ├── cad_vaga.html
 │   ├── index.html
-│   ├── perfil_candidato.html
-│   ├── perfil_empresa.html
 │   ├── package.json
-│   └── tsconfig.json
-├── src/ (Backend Groovy)
+│   ├── package-lock.json
+│   ├── tsconfig.json
+│   ├── .gitignore
+│   │
+│   ├── node_modules/
+│   │
+│   ├── public/
+│   │   ├── css/
+│   │   │   └── style.css
+│   │   │
+│   │   └── pages/
+│   │       ├── cad_candidato.html
+│   │       ├── cad_empresa.html
+│   │       ├── cad_vaga.html
+│   │       ├── perfil_candidato.html
+│   │       └── perfil_empresa.html
+│   │
+│   └── src/
+│       ├── main.ts
+│       │
+│       ├── charts/
+│       │   └── chart.ts
+│       │
+│       ├── controllers/
+│       │   ├── candidatoController.ts
+│       │   ├── empresaController.ts
+│       │   ├── listagem.ts
+│       │   └── vagaController.ts
+│       │
+│       ├── models/
+│       │   ├── Candidato.ts
+│       │   ├── Empresa.ts
+│       │   ├── User.ts
+│       │   └── Vaga.ts
+│       │
+│       └── services/
+│           └── validador.ts
+│
+├── src/  # Backend (Groovy)
 │   ├── app/
 │   │   └── Main.groovy
+│   │
 │   ├── model/
-│   │   ├── Pessoa.groovy
-│   │   ├── User.groovy
 │   │   ├── Enterprise.groovy
 │   │   ├── MatchCandidato.groovy
-│   │   └── MatchEmpresa.groovy
+│   │   ├── MatchEmpresa.groovy
+│   │   ├── Pessoa.groovy
+│   │   └── User.groovy
+│   │
 │   └── service/
 │       ├── CadastroService.groovy
 │       └── Menu.groovy
+│
 ├── test/
 │   └── service/
 │       └── CadastroServiceTest.groovy
+│
+├── .gitignore
+├── Linketinder.iml
 └── README.md
 
 ```
