@@ -14,10 +14,6 @@ export function cadastrarCandidato(event: Event) {
         alert("O nome deve ter pelo menos 3 caracteres.");
         return;
     }
-    if (nome.length < 3) {
-        alert("O nome deve ter pelo menos 3 caracteres.");
-        return;
-    }
 
     if (!RegexPadroes.email.test(email)) {
         alert("E-mail inválido! Ex: usuario@email.com");
@@ -41,10 +37,9 @@ export function cadastrarCandidato(event: Event) {
     // O .map(s => s.trim()) serve para tirar os espaços das skills (ex: "Java, TS" vira "Java" e "TS")
     const novo = new Candidato(nome, email, idade, estado, Number(cep), descricao, skills.map(s => s.trim()));
 
-    // A MÁGICA: Busca os candidatos salvos ou cria lista vazia
-    const candidatosSalvos = JSON.parse(localStorage.getItem("candidatos") || "[]");
     
-    // Adiciona o novo e salva no navegador
+    const candidatosSalvos = JSON.parse(localStorage.getItem("candidatos") || "[]");
+
     candidatosSalvos.push(novo);
     localStorage.setItem("candidatos", JSON.stringify(candidatosSalvos));
 

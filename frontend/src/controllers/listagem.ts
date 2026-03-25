@@ -10,7 +10,7 @@ export function listarVagas() {
 
     vagasSalvas.forEach((v: any, index: number) => {
         const li = document.createElement("li");
-        li.title = `Descrição: ${v.descricao}`; // Hover opcional do desafio
+        li.title = `Descrição: ${v.descricao}`; 
         
         li.innerHTML = `
             ${v.titulo} - Skills: ${v.skills.join(", ")}
@@ -31,8 +31,7 @@ export function listarCandidatosAnonimo() {
 
     candidatosSalvos.forEach((c: any) => {
         const tr = document.createElement("tr");
-        tr.title = `Estado: ${c.estado} | CEP: ${c.cep}`; // Hover opcional do desafio
-
+        tr.title = `Estado: ${c.estado} | CEP: ${c.cep}`; 
         tr.innerHTML = `
             <td>Candidato Anônimo</td>
             <td>${c.skills.join(", ")}</td>

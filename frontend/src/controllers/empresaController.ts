@@ -2,7 +2,7 @@ import { Empresa } from "../models/Empresa";
 import { RegexPadroes } from "../services/validador";
 
 export function cadastrarEmpresa(event: Event) {
-    event.preventDefault(); // Impede o recarregamento da página
+    event.preventDefault(); 
 
     const nome = (document.getElementById("nome") as HTMLInputElement).value;
     const email = (document.getElementById("email") as HTMLInputElement).value;
