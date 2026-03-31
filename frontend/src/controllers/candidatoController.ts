@@ -27,8 +27,6 @@ export function cadastrarCandidato(event: Event) {
 
 
 
-
-
     const idade = Number((document.getElementById("idade") as HTMLInputElement).value);
     const estado = (document.getElementById("estado") as HTMLInputElement).value;
     const descricao = (document.getElementById("descricao") as HTMLInputElement).value;
