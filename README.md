@@ -299,3 +299,19 @@ Abra este endereço no seu navegador para visualizar o Linketinder.
 - Programação Orientada a Objetos (POO): Organização do código TypeScript utilizando classes, interfaces etc.
 
 
+## 🎲 Modelagem de dados 
+
+- Para modelagem de dados foi utilizado DBdiagram.io
+- Exportado e alterado alguma sintaxes que o import trouxe errado
+
+
+
+
+![img.png](img.png)
+
+## 📑 Tabelas criadas 
+
+- Dentro do diretório db tem um arquivo chamado linketinder_setup
+- Lá se encontra as queries feitas na parte de SQL
+
+
