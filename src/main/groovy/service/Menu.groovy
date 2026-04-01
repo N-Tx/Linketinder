@@ -196,11 +196,14 @@ class Menu {
         println "Nome do candidato:"
         def nome = scanner.nextLine()
 
-        println "Email:"
-        def email = scanner.nextLine()
+        println "Sobrenome"
+        def sobrenome = scanner.nextLine()
 
         println "CPF:"
         def cpf = scanner.nextLine()
+
+        println "Email:"
+        def email = scanner.nextLine()
 
         println "Idade:"
         def idade = scanner.nextInt()
@@ -221,6 +224,7 @@ class Menu {
 
         def novoUsuario = new User(
                 nome: nome,
+                sobrenome: sobrenome,
                 email: email,
                 cpf: cpf,
                 idade: idade,

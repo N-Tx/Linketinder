@@ -1,7 +1,8 @@
 package model
 
 class Pessoa {
-    String Nome;
+    String nome;
+    String sobrenome;
     String email;
     int idade;
     String estado;

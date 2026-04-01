@@ -1,5 +1,6 @@
 package service
 
+import dao.CandidatoDAO
 import model.User
 import model.Enterprise
 import model.MatchCandidato
@@ -13,6 +14,8 @@ class CadastroService {
 
     List<Enterprise> matchesCandidato = []
     List<User> matchesEmpresa = []
+
+    CandidatoDAO candidatoDAO = new CandidatoDAO()
 
 
     //construtor
@@ -134,6 +137,7 @@ class CadastroService {
 
     void cadastrarUsuario(User user){
         users << user
+        candidatoDAO.salvar(user)
     }
 
     void cadastrarEmpresa(Enterprise enterprise){
