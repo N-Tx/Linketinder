@@ -1,6 +1,7 @@
 package service
 
 import dao.CandidatoDAO
+import dao.EmpresaDao
 import model.User
 import model.Enterprise
 import model.MatchCandidato
@@ -17,9 +18,11 @@ class CadastroService {
 
     CandidatoDAO candidatoDAO = new CandidatoDAO()
 
+    EmpresaDao empresaDAO = new EmpresaDao()
+
 
     //construtor
-    CadastroService(){
+    /*CadastroService(){
         carregarDadosIniciais()
     }
     private void carregarDadosIniciais(){
@@ -134,6 +137,7 @@ class CadastroService {
                 skills: ["DevOps", "Kubernetes", "Terraform"]
         )
     }
+     */
 
     void cadastrarUsuario(User user){
         users << user
@@ -142,5 +146,6 @@ class CadastroService {
 
     void cadastrarEmpresa(Enterprise enterprise){
         enterprises << enterprise
+        empresaDAO.salvar(enterprise)
     }
 }

@@ -156,6 +156,9 @@ class Menu {
         println "Email:"
         def email = scanner.nextLine()
 
+        println "Telefone:"
+        def telefone = scanner.nextLine()
+
         println "CNPJ:"
         def cnpj = scanner.nextLine()
 
@@ -179,6 +182,7 @@ class Menu {
                 nome: nome,
                 email: email,
                 cnpj: cnpj,
+                telefone: telefone,
                 pais: pais,
                 estado: estado,
                 cep: cep,
@@ -205,6 +209,16 @@ class Menu {
         println "Email:"
         def email = scanner.nextLine()
 
+        println "Telefone:"
+        def telefone= scanner.nextLine()
+
+
+        println "Data de nascimento (yyyy-mm-dd):"
+        def data_nascimento= scanner.nextLine()
+
+        println "País:"
+        def pais= scanner.nextLine()
+
         println "Idade:"
         def idade = scanner.nextInt()
         scanner.nextLine() // limpa buffer
@@ -226,12 +240,16 @@ class Menu {
                 nome: nome,
                 sobrenome: sobrenome,
                 email: email,
+                telefone: telefone,
+                data_nascimento: data_nascimento,
+                pais: pais,
                 cpf: cpf,
                 idade: idade,
                 estado: estado,
                 cep: cep,
                 descricao: descricao,
                 skills: skills
+                //falta senha
         )
 
         service.cadastrarUsuario(novoUsuario)

@@ -9,8 +9,8 @@ class CandidatoDAO {
 
         if (db != null) {
             try {
-                // 1. Usamos '?' como marcadores de posição (placeholders)
-                String query = "INSERT INTO candidato (nome, sobrenome, email, cpf, cep, descricao) VALUES (?, ?, ?, ?, ?, ?)"
+
+                String query = "INSERT INTO candidato (nome, sobrenome, email, telefone, data_nascimento, pais, cpf, cep, descricao) VALUES (?, ?, ?, ?, ?::date, ?, ?, ?, ?)"
 
                 // 2. Passamos os dados em uma lista como segundo argumento.
                 // O Groovy coloca as aspas e limpa os dados automaticamente!
@@ -18,6 +18,9 @@ class CandidatoDAO {
                         candidato.nome,
                         candidato.sobrenome,
                         candidato.email,
+                        candidato.telefone,
+                        candidato.data_nascimento,
+                        candidato.pais,
                         candidato.cpf,
                         candidato.cep,
                         candidato.descricao
@@ -34,3 +37,5 @@ class CandidatoDAO {
         }
     }
 }
+
+
