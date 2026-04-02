@@ -2,6 +2,7 @@ package service
 
 import model.Enterprise
 import model.User
+import model.Vaga
 
 import java.util.Scanner
 
@@ -28,6 +29,7 @@ class Menu {
             println "4. Listar candidatos"
             println "5. Adicionar candidato"
             println "6. Adicionar empresa"
+            println "7. Adicionar Vaga"
             println "0. Sair"
             println "==========================="
 
@@ -60,6 +62,9 @@ class Menu {
                     break
                 case 6:
                     CadastroEnterprise()
+                    break
+                case 7:
+                    cadastroVaga()
                     break
                 case 0:
                     return
@@ -255,6 +260,32 @@ class Menu {
         service.cadastrarUsuario(novoUsuario)
 
         println "Candidato cadastrado com sucesso!"
+    }
+    void cadastroVaga() {
+        println "\n=== CADASTRO DE VAGA ==="
+
+        println "Nome da Vaga (Ex: Desenvolvedor Backend):"
+        def nome = scanner.nextLine()
+
+        println "Descrição da Vaga:"
+        def descricao = scanner.nextLine()
+
+        // O pulo do gato: A chave estrangeira (Foreign Key)!
+        println "Digite o ID da Empresa dona desta vaga (Verifique o ID lá no pgAdmin):"
+        def idEmpresa = scanner.nextInt()
+        scanner.nextLine() // Limpa o buffer do teclado para não pular a próxima leitura!
+
+        // Cria o objeto Vaga ligando ele ao ID da Empresa
+        def novaVaga = new Vaga(
+                nome: nome,
+                descricao: descricao,
+                idEmpresa: idEmpresa
+        )
+
+        // Manda pro Service (que manda pro DAO, que manda pro Banco)
+        service.cadastrarVaga(novaVaga)
+
+        println "✅ Vaga cadastrada com sucesso para a empresa ID ${idEmpresa}!"
     }
 
 }

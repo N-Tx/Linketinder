@@ -2,7 +2,7 @@ package dao
 
 import model.Enterprise
 
-class EmpresaDao {
+class EmpresaDAO {
 
 
     void salvar(Enterprise empresa){

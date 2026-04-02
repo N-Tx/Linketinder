@@ -1,11 +1,13 @@
 package service
 
 import dao.CandidatoDAO
-import dao.EmpresaDao
+import dao.CompetenciaDAO
+import dao.EmpresaDAO
+import dao.VagaDAO
+import model.Competencia
 import model.User
 import model.Enterprise
-import model.MatchCandidato
-import model.MatchEmpresa
+import model.Vaga
 
 class CadastroService {
 
@@ -17,8 +19,9 @@ class CadastroService {
     List<User> matchesEmpresa = []
 
     CandidatoDAO candidatoDAO = new CandidatoDAO()
-
-    EmpresaDao empresaDAO = new EmpresaDao()
+    EmpresaDAO empresaDAO = new EmpresaDAO()
+    CompetenciaDAO competenciaDAO = new CompetenciaDAO()
+    VagaDAO vagaDAO = new VagaDAO()
 
 
     //construtor
@@ -148,4 +151,14 @@ class CadastroService {
         enterprises << enterprise
         empresaDAO.salvar(enterprise)
     }
+
+
+    void salvarCompetencia(Competencia c) {
+        competenciaDAO.salvar(c)
+    }
+
+    void cadastrarVaga(Vaga vaga) {
+        vagaDAO.salvar(vaga)
+    }
+
 }
