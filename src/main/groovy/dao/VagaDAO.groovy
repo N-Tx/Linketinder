@@ -7,7 +7,6 @@ class VagaDAO {
         def db = Conexao.getConexao()
         if (db != null) {
             try {
-                // Verifique se os nomes das colunas (nome, descricao, id_empresa) batem com o seu pgAdmin
                 String query = "INSERT INTO vagas (nome, descricao, empresa_id) VALUES (?, ?, ?)"
 
                 db.executeInsert(query, [

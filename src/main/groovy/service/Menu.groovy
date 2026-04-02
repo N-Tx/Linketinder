@@ -1,5 +1,6 @@
 package service
 
+import model.Competencia
 import model.Enterprise
 import model.User
 import model.Vaga
@@ -30,6 +31,8 @@ class Menu {
             println "5. Adicionar candidato"
             println "6. Adicionar empresa"
             println "7. Adicionar Vaga"
+            println "8. Adicionar Competência (Manual)"
+            println "9. Listar Competências"
             println "0. Sair"
             println "==========================="
 
@@ -65,6 +68,12 @@ class Menu {
                     break
                 case 7:
                     cadastroVaga()
+                    break
+                case 8:
+                    cadastrarCompetenciaManual()
+                    break
+                case 9:
+                    listarCompetencias()
                     break
                 case 0:
                     return
@@ -270,10 +279,10 @@ class Menu {
         println "Descrição da Vaga:"
         def descricao = scanner.nextLine()
 
-        // O pulo do gato: A chave estrangeira (Foreign Key)!
+
         println "Digite o ID da Empresa dona desta vaga (Verifique o ID lá no pgAdmin):"
         def idEmpresa = scanner.nextInt()
-        scanner.nextLine() // Limpa o buffer do teclado para não pular a próxima leitura!
+        scanner.nextLine()
 
         // Cria o objeto Vaga ligando ele ao ID da Empresa
         def novaVaga = new Vaga(
@@ -282,12 +291,38 @@ class Menu {
                 idEmpresa: idEmpresa
         )
 
-        // Manda pro Service (que manda pro DAO, que manda pro Banco)
+
         service.cadastrarVaga(novaVaga)
 
         println "✅ Vaga cadastrada com sucesso para a empresa ID ${idEmpresa}!"
     }
 
+    void cadastrarCompetenciaManual() {
+        println "\n=== CADASTRO DE COMPETÊNCIA ==="
+        println "Nome da competência (ex: Java, Python, SQL):"
+        def nome = scanner.nextLine()
+
+        def novaComp = new Competencia(nome: nome)
+        service.salvarCompetencia(novaComp)
+
+        println "✅ Competência guardada com sucesso!"
+    }
+
+    void listarCompetencias() {
+        println "\n=== CATÁLOGO DE COMPETÊNCIAS ==="
+        def lista = service.buscarCompetencias()
+
+        if (lista.isEmpty()) {
+            println "Nenhuma competência cadastrada no banco."
+        } else {
+            lista.each {
+                println "ID: ${it.id} | Nome: ${it.nome}"
+            }
+        }
+    }
+
 }
+
+
 
 

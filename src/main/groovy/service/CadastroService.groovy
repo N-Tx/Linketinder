@@ -144,8 +144,21 @@ class CadastroService {
 
     void cadastrarUsuario(User user){
         users << user
-        candidatoDAO.salvar(user)
-    }
+
+
+        int idNovoCandidato = candidatoDAO.salvar(user)
+
+
+        if (idNovoCandidato != -1) {
+            user.skills.each { nomeDaSkill ->
+
+                int idSkill = competenciaDAO.salvarOuBuscarId(nomeDaSkill)
+
+
+                candidatoDAO.vincularCompetencia(idNovoCandidato, idSkill)
+            }
+        }
+    } //...
 
     void cadastrarEmpresa(Enterprise enterprise){
         enterprises << enterprise
@@ -159,6 +172,9 @@ class CadastroService {
 
     void cadastrarVaga(Vaga vaga) {
         vagaDAO.salvar(vaga)
+    }
+    List<Competencia> buscarCompetencias() {
+        return competenciaDAO.listar()
     }
 
 }

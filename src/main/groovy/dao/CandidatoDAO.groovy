@@ -4,17 +4,16 @@ import model.User
 
 class CandidatoDAO {
 
-    void salvar(User candidato) {
+
+    int salvar(User candidato) {
         def db = Conexao.getConexao()
+        int idGerado = -1
 
         if (db != null) {
             try {
+                String query = "INSERT INTO candidato (nome, sobrenome, email, telefone, data_nascimento, pais, cpf, cep, descricao) VALUES (?, ?, ?, ?, ?::date, ?, ?, ?, ?) RETURNING id"
 
-                String query = "INSERT INTO candidato (nome, sobrenome, email, telefone, data_nascimento, pais, cpf, cep, descricao) VALUES (?, ?, ?, ?, ?::date, ?, ?, ?, ?)"
-
-                // 2. Passamos os dados em uma lista como segundo argumento.
-                // O Groovy coloca as aspas e limpa os dados automaticamente!
-                db.executeInsert(query, [
+                def row = db.firstRow(query, [
                         candidato.nome,
                         candidato.sobrenome,
                         candidato.email,
@@ -27,15 +26,30 @@ class CandidatoDAO {
 
                 ])
 
-                println "💾 Cadastro salvo diretamente no banco de dados!"
-
+                if (row != null) {
+                    idGerado = row.id
+                    println "✅ Candidato salvo com sucesso! ID: ${idGerado}"
+                }
             } catch (Exception e) {
-                println "🚨 Erro ao tentar salvar no banco: ${e.message}"
+                println "🚨 Erro ao salvar candidato no banco: ${e.message}"
+            } finally {
+                db.close()
+            }
+        }
+        return idGerado
+    }
+
+    void vincularCompetencia(int idCandidato, int idCompetencia) {
+        def db = Conexao.getConexao()
+        if (db != null) {
+            try {
+                String query = "INSERT INTO candidato_competencia (candidato_id, competencia_id) VALUES (?, ?)"
+                db.executeInsert(query, [idCandidato, idCompetencia])
+            } catch (Exception e) {
+                println "🚨 Erro ao vincular competência: ${e.message}"
             } finally {
                 db.close()
             }
         }
     }
 }
-
-
