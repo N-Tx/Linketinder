@@ -43,6 +43,11 @@ dependencies {
     implementation 'org.codehaus.groovy:groovy:3.0.21'
     implementation 'org.codehaus.groovy:groovy-sql:3.0.21'
     implementation 'org.postgresql:postgresql:42.7.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+}
+test {
+    useJUnitPlatform()
 }
 
 application {
