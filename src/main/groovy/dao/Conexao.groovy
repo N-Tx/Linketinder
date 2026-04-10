@@ -14,7 +14,7 @@ class Conexao {
         try {
             return Sql.newInstance(url, user, password, driver)
         } catch (SQLException e) {
-            println "🚨 Erro ao conectar com o banco de dados: ${e.message}"
+            println "Erro ao conectar com o banco de dados: ${e.message}"
             return null
         }
     }

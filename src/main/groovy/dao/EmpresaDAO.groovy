@@ -23,10 +23,10 @@ class EmpresaDAO {
                 empresa.descricao
                 ])
 
-                println "💾 Cadastro salvo diretamente no banco de dados!"
+                println "Cadastro salvo diretamente no banco de dados!"
 
             } catch (Exception e){
-                println "🚨 Erro ao tentar salvar no banco: ${e.message}"
+                println "Erro ao tentar salvar no banco: ${e.message}"
             } finally {
                 db.close()
             }

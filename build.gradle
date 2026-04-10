@@ -45,10 +45,12 @@ dependencies {
     implementation 'org.postgresql:postgresql:42.7.3'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+    testImplementation 'org.mockito:mockito-core:5.11.0'
 }
 test {
     useJUnitPlatform()
 }
+
 
 application {
     mainClass = 'app.Main'

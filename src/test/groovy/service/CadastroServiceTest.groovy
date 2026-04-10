@@ -2,66 +2,60 @@ package service
 
 import model.User
 import model.Enterprise
+
+import org.mockito.Mockito
+import static org.mockito.Mockito.*
+
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-
 import static org.junit.jupiter.api.Assertions.*
+
+import dao.CandidatoDAO
+import dao.EmpresaDAO
 
 class CadastroServiceTest {
 
     CadastroService service
+    CandidatoDAO candidatoDAOMock
+    EmpresaDAO empresaDAOMock
 
     @BeforeEach
     void setup() {
+
         service = new CadastroService()
+
+
+        candidatoDAOMock = Mockito.mock(CandidatoDAO.class)
+        empresaDAOMock = Mockito.mock(EmpresaDAO.class)
+
+
+        service.candidatoDAO = candidatoDAOMock
+        service.empresaDAO = empresaDAOMock
     }
 
     @Test
     void deveCadastrarNovoUsuario() {
-        int tamanhoInicial = service.users.size()
-
         def novoUser = new User(
                 nome: "Pedro",
                 email: "pedro@gmail.com",
                 cpf: "999999",
-                idade: 30,
-                estado: "RJ",
-                cep: "00000-000",
-                descricao: "Backend developer",
-                skills: ["Java", "Spring"]
         )
 
         service.cadastrarUsuario(novoUser)
 
-
-        assertEquals(tamanhoInicial + 1, service.users.size())
-
-
-        assertTrue(service.users.contains(novoUser))
+        verify(candidatoDAOMock, times(1)).inserir(novoUser)
     }
-    @Test
-    void deveCadastrarNovaEmpresa() {
-        int tamanhoInicial = service.enterprises.size()
 
-        def novaEmpresa = new Enterprise(
-                nome: "NovaTech",
-                email: "contato@novatech.com",
-                cnpj: "9999",
-                pais: "Brasil",
-                estado: "SP",
-                cep: "00000-000",
-                descricao: "Empresa de tecnologia",
-                skills: ["AWS", "Docker"]
+    @Test
+    void DeveCadastrarEmpresa(){
+        def novaEnterprise = new Enterprise(
+                nome: "Pastelsoft",
+                email: "Pastel@gmail.com",
+                cnpj: "10000323"
         )
 
-        service.cadastrarEmpresa(novaEmpresa)
+        service.cadastrarEmpresa(novaEnterprise)
 
-        assertEquals(tamanhoInicial + 1, service.enterprises.size())
-
-        assertTrue(service.enterprises.contains(novaEmpresa))
+        verify(empresaDAOMock, times(1)).inserir(novaEnterprise)
     }
-
-
-
-
 }

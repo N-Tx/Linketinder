@@ -14,9 +14,9 @@ class VagaDAO {
                         vaga.descricao,
                         vaga.idEmpresa
                 ])
-                println "💼 Vaga cadastrada com sucesso no banco!"
+                println "Vaga cadastrada com sucesso no banco!"
             } catch (Exception e) {
-                println "🚨 Erro ao salvar vaga: ${e.message}"
+                println "Erro ao salvar vaga: ${e.message}"
             } finally {
                 db.close()
             }

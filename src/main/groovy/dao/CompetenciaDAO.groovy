@@ -10,9 +10,9 @@ class CompetenciaDAO {
             try {
                 String query = "INSERT INTO competencias (nome) VALUES (?)"
                 db.executeInsert(query, [comp.nome])
-                println "✅ Competência '${comp.nome}' cadastrada no banco!"
+                println "Competência '${comp.nome}' cadastrada no banco!"
             } catch (Exception e) {
-                println "🚨 Erro ao salvar competência: ${e.message}"
+                println "Erro ao salvar competência: ${e.message}"
             } finally {
                 db.close()
             }
@@ -28,7 +28,7 @@ class CompetenciaDAO {
                     lista << new Competencia(id: row.id, nome: row.nome)
                 }
             } catch (Exception e) {
-                println "🚨 Erro ao listar competências: ${e.message}"
+                println " Erro ao listar competências: ${e.message}"
             } finally {
                 db.close()
             }
@@ -55,7 +55,7 @@ class CompetenciaDAO {
                     }
                 }
             } catch (Exception e) {
-                println "🚨 Erro ao buscar/salvar competência automática: ${e.message}"
+                println " Erro ao buscar/salvar competência automática: ${e.message}"
             } finally {
                 db.close()
             }

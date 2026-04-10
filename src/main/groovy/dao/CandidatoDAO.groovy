@@ -28,10 +28,10 @@ class CandidatoDAO {
 
                 if (row != null) {
                     idGerado = row.id
-                    println "✅ Candidato salvo com sucesso! ID: ${idGerado}"
+                    println "Candidato salvo com sucesso! ID: ${idGerado}"
                 }
             } catch (Exception e) {
-                println "🚨 Erro ao salvar candidato no banco: ${e.message}"
+                println " Erro ao salvar candidato no banco: ${e.message}"
             } finally {
                 db.close()
             }
@@ -46,7 +46,7 @@ class CandidatoDAO {
                 String query = "INSERT INTO candidato_competencia (candidato_id, competencia_id) VALUES (?, ?)"
                 db.executeInsert(query, [idCandidato, idCompetencia])
             } catch (Exception e) {
-                println "🚨 Erro ao vincular competência: ${e.message}"
+                println "Erro ao vincular competência: ${e.message}"
             } finally {
                 db.close()
             }
