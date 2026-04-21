@@ -42,13 +42,13 @@ class CompetenciaDAO {
 
         if (db != null) {
             try {
-                // tenta achar a skill ignorando maiúsculas e minúsculas
+
                 def row = db.firstRow("SELECT id FROM competencias WHERE nome ILIKE ?", [nomeSkill])
 
                 if (row != null) {
                     idCompetencia = row.id // Achou no banco, pega o ID
                 } else {
-                    // se isso que fiz nao achar, cadastra uma nova automaticamente e já pega o novo ID gerado
+
                     def insertRow = db.firstRow("INSERT INTO competencias (nome) VALUES (?) RETURNING id", [nomeSkill])
                     if (insertRow != null) {
                         idCompetencia = insertRow.id
@@ -61,6 +61,6 @@ class CompetenciaDAO {
             }
         }
         return idCompetencia
-    }//...
+    }
 
 }

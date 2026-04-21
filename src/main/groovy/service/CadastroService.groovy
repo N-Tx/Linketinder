@@ -54,4 +54,7 @@ class CadastroService {
     List<User> buscarUser() {
         return candidatoDAO.listar()
     }
+    List<Enterprise> buscarEmpresa() {
+        return empresaDAO.listar()
+    }
 }

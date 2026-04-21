@@ -40,23 +40,23 @@ class CandidatoDAO {
         return idGerado
     }
 
-
     List<User> listar() {
         def db = Conexao.getConexao()
         List<User> lista = []
         if (db != null) {
             try {
                 db.eachRow("SELECT * FROM candidato ORDER BY id") { row ->
-                    lista << new Competencia(id: row.id, nome: row.nome)
+                    lista << new User (id: row.id, nome: row.nome)
                 }
             } catch (Exception e) {
-                println " Erro ao listar competências: ${e.message}"
+                println " Erro ao listar usuarios: ${e.message}"
             } finally {
                 db.close()
             }
         }
         return lista
     }
+
 
     void vincularCompetencia(int idCandidato, int idCompetencia) {
         def db = Conexao.getConexao()

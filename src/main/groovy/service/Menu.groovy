@@ -4,11 +4,9 @@ import model.Competencia
 import model.Enterprise
 import model.User
 import model.Vaga
-
 import java.util.Scanner
 
 class Menu {
-
 
     Scanner scanner = new Scanner(System.in)
     CadastroService service
@@ -36,26 +34,26 @@ class Menu {
             println "0. Sair"
             println "==========================="
 
-            def opc = scanner.nextInt()
+            def opcaoMenu = scanner.nextInt()
             scanner.nextLine()
 
-            switch (opc){
+            switch (opcaoMenu){
                 case 1:
                     println "##################"
                     println "Área do candidato"
                     println "##################"
-                    visualizarEmpresas()
+                    visualizarEmpresas() // refazer area de candidato
                     break
                 case 2:
                     println "#################x"
                     println "Área da empresa"
                     println "#################"
                     println()
-                    visualizarCandidatos()
+                    visualizarCandidatos()  // refazer area de empresa
 
                     break
                 case 3:
-                    listAllEmpresas()
+                    listarEmpresa()
                     break
                 case 4:
                     listarCandidato()
@@ -78,88 +76,6 @@ class Menu {
                 case 0:
                     return
             }
-        }
-    }
-
-    void listAllEmpresas() {
-        service.enterprises.each {
-            println it.nome
-
-        }
-    }
-
-    void listAllCandidato(){
-        service.users.each {
-            println it.getNome()
-        }
-
-    }
-
-    void visualizarEmpresas() {
-
-        if (service.enterprises.isEmpty()) {
-            println "Nenhuma empresa cadastrada."
-            return
-        }
-
-        int index = 0
-
-        while (index < service.enterprises.size()) {
-
-            def empresa = service.enterprises[index]
-
-            println "\n===== EMPRESA ${index + 1} ====="
-            println "Nome: ${empresa.nome}"
-            println "Email: ${empresa.email}"
-            println "CNPJ: ${empresa.cnpj}"
-            println "Pais: ${empresa.pais}"
-            println "Estado: ${empresa.estado}"
-            println "Cep: ${empresa.cep}"
-            println "Descrição: ${empresa.descricao}"
-            println "Skills desejadas: ${empresa.skills}"
-
-            println "\nPressione 1 para dar match ou 2 para passar"
-            def entrada = scanner.nextLine()
-
-            if (entrada == "1") {
-                service.matchesCandidato << empresa
-                println "✅ Match realizado!"
-
-            index++
-        }
-    }
-    }
-    void visualizarCandidatos() {
-
-        if (service.users.isEmpty()) {
-            println "Nenhum candidato cadastrado."
-            return
-        }
-
-        int index = 0
-
-        while (index < service.users.size()) {
-
-            def user = service.users[index]
-
-            println "\n===== CANDIDATO ${index + 1} ====="
-            println "Nome: ${user.nome}"
-            println "Email: ${user.email}"
-            println "CPF: ${user.cpf}"
-            println "Idade: ${user.idade}"
-            println "CEP: ${user.cep}"
-            println "Descrição: ${user.descricao}"
-            println "Skills: ${user.skills}"
-
-            println "\nPressione 1 para dar match ou 2 para passar"
-            def entrada = scanner.nextLine()
-
-            if (entrada == "1") {
-                service.matchesEmpresa << user
-                println "✅ Match realizado!"
-            }
-
-            index++
         }
     }
 
@@ -284,17 +200,15 @@ class Menu {
         def idEmpresa = scanner.nextInt()
         scanner.nextLine()
 
-        // Cria o objeto Vaga ligando ele ao ID da Empresa
-        def novaVaga = new Vaga(
+        def novaVagaComIdEmpresa = new Vaga(
                 nome: nome,
                 descricao: descricao,
                 idEmpresa: idEmpresa
         )
 
+        service.cadastrarVaga(novaVagaComIdEmpresa)
 
-        service.cadastrarVaga(novaVaga)
-
-        println "✅ Vaga cadastrada com sucesso para a empresa ID ${idEmpresa}!"
+        println "Vaga cadastrada com sucesso para a empresa ID ${idEmpresa}!"
     }
 
     void cadastrarCompetenciaManual() {
@@ -302,10 +216,10 @@ class Menu {
         println "Nome da competência (ex: Java, Python, SQL):"
         def nome = scanner.nextLine()
 
-        def novaComp = new Competencia(nome: nome)
-        service.salvarCompetencia(novaComp)
+        def novaCompetencia = new Competencia(nome: nome)
+        service.salvarCompetencia(novaCompetencia)
 
-        println "✅ Competência guardada com sucesso!"
+        println  "Competência guardada com sucesso!"
     }
 
     void listarCompetencias() {
@@ -322,8 +236,21 @@ class Menu {
     }
 
     void listarCandidato() {
-        println "\n==== List de candidatos ===="
+        println "\n==== Lista de candidatos ===="
         def lista = service.buscarUser()
+
+        if (lista.isEmpty()) {
+            println "Nenhuma competência cadastrada no banco."
+        } else {
+            lista.each {
+                println "ID: ${it.id} | Nome: ${it.nome}"
+            }
+        }
+    }
+
+    void listarEmpresa() {
+        println "\n==== Lista de Empresas ===="
+        def lista = service.buscarEmpresa()
 
         if (lista.isEmpty()) {
             println "Nenhuma competência cadastrada no banco."

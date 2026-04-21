@@ -1,6 +1,8 @@
 package dao
 
+import model.Competencia
 import model.Enterprise
+import model.User
 
 class EmpresaDAO {
 
@@ -32,7 +34,22 @@ class EmpresaDAO {
             }
         }
 
+    }
 
-
+    List<Enterprise> listar() {
+        def db = Conexao.getConexao()
+        List<Enterprise> lista = []
+        if (db != null) {
+            try {
+                db.eachRow("SELECT * FROM empresa ORDER BY id") { row ->
+                    lista << new Enterprise(id: row.id, nome: row.nome)
+                }
+            } catch (Exception e) {
+                println " Erro ao listar usuarios: ${e.message}"
+            } finally {
+                db.close()
+            }
+        }
+        return lista
     }
 }
