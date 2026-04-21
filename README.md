@@ -315,3 +315,40 @@ Abra este endereço no seu navegador para visualizar o Linketinder.
 - Lá se encontra as queries feitas na parte de SQL
 
 
+## Aplicando S.O.L.I.D
+
+Boas práticas e melhorias aplicadas
+
+Durante o desenvolvimento do projeto, foram realizadas diversas melhorias estruturais e de qualidade de código, visando organização, legibilidade e manutenção:
+
+# Padronização e legibilidade de código
+
+- Renomeação de variáveis para nomes mais descritivos
+- Padronização de idioma (mantendo consistência nos nomes)
+- Uso de nomes semânticos (ex: listaCandidatos, buscarUser)
+- Refatoração segura utilizando a IDE (IntelliJ), evitando inconsistências
+
+Essas melhorias tornam o código mais claro e fácil de manter.
+
+# Separação de responsabilidades (SRP)
+
+- Separação da lógica de interface (Menu) da lógica de execução (MenuController)
+- Delegação das regras de negócio para a camada de Service
+- Isolamento do acesso ao banco na camada DAO
+
+👉 Cada classe passou a ter uma única responsabilidade.
+
+# Organização em camadas
+- Estruturação do projeto em pacotes:
+- model
+- dao
+- service
+- controller
+- Melhor divisão entre dados, lógica e controle
+
+👉 Facilita manutenção e escalabilidade do sistema.
+
+Uso de injeção de dependência (básico)
+Passagem de dependências via construtor (ex: CadastroService no controller)
+Redução de acoplamento entre classes
+
