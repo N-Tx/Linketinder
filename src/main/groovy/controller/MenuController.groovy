@@ -189,11 +189,12 @@ class MenuController {
         println "Nome da competência (ex: Java, Python, SQL):"
         def nome = scanner.nextLine()
 
+        // adicionar verificador de competencia se existir.
+
         def novaCompetencia = new Competencia(nome: nome)
         service.salvarCompetencia(novaCompetencia)
 
         println  "Competência guardada com sucesso!"
     }
-
 
 }
