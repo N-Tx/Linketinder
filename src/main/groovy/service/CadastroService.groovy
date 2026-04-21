@@ -17,11 +17,11 @@ class CadastroService {
     private VagaDAO vagaDAO
 
 
-    CadastroService(CandidatoDAO c, EmpresaDAO e, CompetenciaDAO comp, VagaDAO v) {
-        this.candidatoDAO = c
-        this.empresaDAO = e
-        this.competenciaDAO = comp
-        this.vagaDAO = v
+    CadastroService(CandidatoDAO candidatoDAO, EmpresaDAO empresaDAO, CompetenciaDAO competenciaDAO, VagaDAO vagaDAO) {
+        this.candidatoDAO = candidatoDAO
+        this.empresaDAO = empresaDAO
+        this.competenciaDAO = competenciaDAO
+        this.vagaDAO = vagaDAO
     }
 
     void cadastrarUsuario(User user) {
