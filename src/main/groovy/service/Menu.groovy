@@ -58,7 +58,7 @@ class Menu {
                     listAllEmpresas()
                     break
                 case 4:
-                    listAllCandidato()
+                    listarCandidato()
                     break
                 case 5:
                     CadastroUser()
@@ -311,6 +311,19 @@ class Menu {
     void listarCompetencias() {
         println "\n=== CATÁLOGO DE COMPETÊNCIAS ==="
         def lista = service.buscarCompetencias()
+
+        if (lista.isEmpty()) {
+            println "Nenhuma competência cadastrada no banco."
+        } else {
+            lista.each {
+                println "ID: ${it.id} | Nome: ${it.nome}"
+            }
+        }
+    }
+
+    void listarCandidato() {
+        println "\n==== List de candidatos ===="
+        def lista = service.buscarUser()
 
         if (lista.isEmpty()) {
             println "Nenhuma competência cadastrada no banco."

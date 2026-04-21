@@ -11,163 +11,37 @@ import model.Vaga
 
 class CadastroService {
 
-    List<User> users = []
-    List<Enterprise> enterprises = []
+    private CandidatoDAO candidatoDAO
+    private EmpresaDAO empresaDAO
+    private CompetenciaDAO competenciaDAO
+    private VagaDAO vagaDAO
 
 
-    List<Enterprise> matchesCandidato = []
-    List<User> matchesEmpresa = []
-
-    CandidatoDAO candidatoDAO = new CandidatoDAO()
-    EmpresaDAO empresaDAO = new EmpresaDAO()
-    CompetenciaDAO competenciaDAO = new CompetenciaDAO()
-    VagaDAO vagaDAO = new VagaDAO()
-
-
-    //construtor
-    /*CadastroService(){
-        carregarDadosIniciais()
+    CadastroService(CandidatoDAO c, EmpresaDAO e, CompetenciaDAO comp, VagaDAO v) {
+        this.candidatoDAO = c
+        this.empresaDAO = e
+        this.competenciaDAO = comp
+        this.vagaDAO = v
     }
-    private void carregarDadosIniciais(){
 
-        users << new User(
-                nome: "Nathan",
-                email: "nathan@gmail.com",
-                cpf: "1113333333",
-                idade: 34,
-                estado: "Rio de Janeiro",
-                cep: "2660-2001",
-                descricao: "A procura de uma vaga backend",
-                skills: ["Java", "Spring Boot", "MySQL"]
-        )
+    void cadastrarUsuario(User user) {
+        int id = candidatoDAO.salvar(user)
 
-        users << new User(
-                nome: "João",
-                email: "joao@gmail.com",
-                cpf: "2223333333",
-                idade: 24,
-                estado: "Rio de Janeiro",
-                cep: "2660-2001",
-                descricao: "A procura uma vaga para trabalho backend",
-                skills: ["C#", "Ruby", "Docker"]
-        )
-
-        users << new User(
-                nome: "Maria",
-                email: "maria@gmail.com",
-                cpf: "33333333",
-                idade: 44,
-                estado: "Rio de Janeiro",
-                cep: "2660-2001",
-                descricao: "A procura de uma vaga Junior front end",
-                skills: ["HTML", "CSS", "JavaScript"]
-        )
-
-        users << new User(
-                nome: "Ana",
-                email: "ana@gmail.com",
-                cpf: "444333333",
-                idade: 18,
-                estado: "Rio de Janeiro",
-                cep: "2660-2001",
-                descricao: "A procura de uma vaga de analise de dados",
-                skills: ["Python", "Django", "PostgreSQL"]
-        )
-
-        users << new User(
-                nome: "Carlos",
-                email: "carlos@gmail.com",
-                cpf: "555656",
-                idade: 19,
-                estado: "Rio de Janeiro",
-                cep: "2660-2001",
-                descricao: "A procura de estágio para desenvolvimento mobile",
-                skills: ["Kotlin", "Android", "Firebase"]
-        )
-
-        enterprises << new Enterprise(
-                nome: "Tech LTDA",
-                email: "contato@tech.com",
-                cnpj: "1000",
-                pais: "Brasil",
-                estado: "Rio de Janeiro",
-                cep: "2660-2001",
-                descricao: "A procura de estagiarios motivados para trabalho backend",
-                skills: ["Java", "AWS", "Microservices"]
-        )
-
-        enterprises << new Enterprise(
-                nome: "DevCorp",
-                email: "contato@dev.com",
-                cnpj: "2000",
-                pais: "Brasil",
-                estado: "Rio de Janeiro",
-                cep: "2660-2001",
-                descricao: "A procura de estagiarios motivados para trabalho frontend",
-                skills: ["React", "Node.js", "MongoDB"]
-        )
-
-        enterprises << new Enterprise(
-                nome: "CodeX",
-                email: "contato@codex.com",
-                cnpj: "3000",
-                pais: "Brasil",
-                estado: "São paulo",
-                cep: "2660-2001",
-                descricao: "A procura de DEV Junior para vaga de analise de dados",
-                skills: ["Python", "Machine Learning", "Docker"]
-        )
-
-        enterprises << new Enterprise(
-                nome: "SoftBR",
-                email: "contato@softbr.com",
-                cnpj: "4000",
-                pais: "Brasil",
-                estado: "Rio de Janeiro",
-                cep: "2660-2001",
-                descricao: "A procura de um Pleno com boas softskills",
-                skills: ["C#", ".NET", "Azure"]
-        )
-
-        enterprises << new Enterprise(
-                nome: "CloudSys",
-                email: "contato@cloud.com",
-                cnpj: "5000",
-                pais: "Brasil",
-                estado: "Rio de Janeiro",
-                cep: "2660-2001",
-                descricao: "A procura de estagiarios para area de frontend",
-                skills: ["DevOps", "Kubernetes", "Terraform"]
-        )
-    }
-     */
-
-    void cadastrarUsuario(User user){
-        users << user
-
-
-        int idNovoCandidato = candidatoDAO.salvar(user)
-
-
-        if (idNovoCandidato != -1) {
-            user.skills.each { nomeDaSkill ->
-
-                int idSkill = competenciaDAO.salvarOuBuscarId(nomeDaSkill)
-
-
-                candidatoDAO.vincularCompetencia(idNovoCandidato, idSkill)
+        if (id != -1) {
+            user.skills?.each { skill ->
+                int idSkill = competenciaDAO.salvarOuBuscarId(skill)
+                candidatoDAO.vincularCompetencia(id, idSkill)
             }
         }
-    } //...
+    }
 
     void cadastrarEmpresa(Enterprise enterprise){
-        enterprises << enterprise
         empresaDAO.salvar(enterprise)
     }
 
 
-    void salvarCompetencia(Competencia c) {
-        competenciaDAO.salvar(c)
+    void salvarCompetencia(Competencia competencia) {
+        competenciaDAO.salvar(competencia)
     }
 
     void cadastrarVaga(Vaga vaga) {
@@ -177,4 +51,7 @@ class CadastroService {
         return competenciaDAO.listar()
     }
 
+    List<User> buscarUser() {
+        return candidatoDAO.listar()
+    }
 }

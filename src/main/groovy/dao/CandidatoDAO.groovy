@@ -1,5 +1,6 @@
 package dao
 
+import model.Competencia
 import model.User
 
 class CandidatoDAO {
@@ -37,6 +38,24 @@ class CandidatoDAO {
             }
         }
         return idGerado
+    }
+
+
+    List<User> listar() {
+        def db = Conexao.getConexao()
+        List<User> lista = []
+        if (db != null) {
+            try {
+                db.eachRow("SELECT * FROM candidato ORDER BY id") { row ->
+                    lista << new Competencia(id: row.id, nome: row.nome)
+                }
+            } catch (Exception e) {
+                println " Erro ao listar competências: ${e.message}"
+            } finally {
+                db.close()
+            }
+        }
+        return lista
     }
 
     void vincularCompetencia(int idCandidato, int idCompetencia) {
