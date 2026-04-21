@@ -35,7 +35,7 @@ class MenuController {
         def lista = service.buscarCompetencias()
 
         if (lista.isEmpty()) {
-            println "Nenhuma competência cadastrada no banco."
+            println "Nenhum candidato cadastrada no banco."
         } else {
             lista.each {
                 println "ID: ${it.id} | Nome: ${it.nome}"
@@ -47,7 +47,7 @@ class MenuController {
         def lista = service.buscarEmpresa()
 
         if (lista.isEmpty()) {
-            println "Nenhuma competência cadastrada no banco."
+            println "Nenhuma empresa cadastrada no banco."
         } else {
             lista.each {
                 println "ID: ${it.id} | Nome: ${it.nome}"
