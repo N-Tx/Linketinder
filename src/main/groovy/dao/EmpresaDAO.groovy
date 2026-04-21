@@ -10,7 +10,6 @@ class EmpresaDAO {
     void salvar(Enterprise empresa){
         def db = Conexao.getConexao()
 
-
         if (db != null){
             try{
                 String query = "INSERT INTO empresa (nome, cnpj, email, telefone, pais, cep, descricao) VALUES (?,?,?,?,?,?,?)"

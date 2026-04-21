@@ -55,146 +55,175 @@ class MenuController {
         }
     }
     void CadastroEnterprise() {
-        println "Nome da empresa:"
-        def nome = scanner.nextLine()
+        try {
+            println "Nome da empresa:"
+            def nome = scanner.nextLine()
 
-        println "Email:"
-        def email = scanner.nextLine()
+            println "Email:"
+            def email = scanner.nextLine()
 
-        println "Telefone:"
-        def telefone = scanner.nextLine()
+            println "Telefone:"
+            def telefone = scanner.nextLine()
 
-        println "CNPJ:"
-        def cnpj = scanner.nextLine()
+            println "CNPJ:"
+            def cnpj = scanner.nextLine()
 
-        println "País:"
-        def pais = scanner.nextLine()
+            println "País:"
+            def pais = scanner.nextLine()
 
-        println "Estado:"
-        def estado = scanner.nextLine()
+            println "Estado:"
+            def estado = scanner.nextLine()
 
-        println "CEP:"
-        def cep = scanner.nextLine()
+            println "CEP:"
+            def cep = scanner.nextLine()
 
-        println "Descrição:"
-        def descricao = scanner.nextLine()
+            println "Descrição:"
+            def descricao = scanner.nextLine()
 
-        println "Skills (separadas por vírgula):"
-        def skillsInput = scanner.nextLine()
-        def skills = skillsInput.split(",")*.trim()
+            println "Skills (separadas por vírgula):"
+            def skillsInput = scanner.nextLine()
+            def skills = skillsInput.split(",")*.trim()
 
-        def novaEmpresa = new Enterprise(
-                nome: nome,
-                email: email,
-                cnpj: cnpj,
-                telefone: telefone,
-                pais: pais,
-                estado: estado,
-                cep: cep,
-                descricao: descricao,
-                skills: skills
-        )
+            def novaEmpresa = new Enterprise(
+                    nome: nome,
+                    email: email,
+                    cnpj: cnpj,
+                    telefone: telefone,
+                    pais: pais,
+                    estado: estado,
+                    cep: cep,
+                    descricao: descricao,
+                    skills: skills
+            )
 
-        service.cadastrarEmpresa(novaEmpresa)
+            service.cadastrarEmpresa(novaEmpresa)
 
-        println "Empresa cadastrada com sucesso!"
+            println "Empresa cadastrada com sucesso!"
+
+        } catch (Exception e) {
+            println "Erro ao cadastrar empresa: ${e.message}"
+        }
     }
+
     void CadastroUser() {
+        try {
+            println "Nome do candidato:"
+            def nome = scanner.nextLine()
 
-        println "Nome do candidato:"
-        def nome = scanner.nextLine()
+            println "Sobrenome"
+            def sobrenome = scanner.nextLine()
 
-        println "Sobrenome"
-        def sobrenome = scanner.nextLine()
+            println "CPF:"
+            def cpf = scanner.nextLine()
 
-        println "CPF:"
-        def cpf = scanner.nextLine()
+            println "Email:"
+            def email = scanner.nextLine()
 
-        println "Email:"
-        def email = scanner.nextLine()
+            println "Telefone:"
+            def telefone= scanner.nextLine()
 
-        println "Telefone:"
-        def telefone= scanner.nextLine()
+            println "Data de nascimento (yyyy-mm-dd):"
+            def data_nascimento= scanner.nextLine()
 
+            println "País:"
+            def pais= scanner.nextLine()
 
-        println "Data de nascimento (yyyy-mm-dd):"
-        def data_nascimento= scanner.nextLine()
+            int idade
+            try {
+                println "Idade:"
+                idade = scanner.nextInt()
+                scanner.nextLine()
+            } catch (Exception e) {
+                println "Idade inválida! Digite um número."
+                scanner.nextLine()
+                return
+            }
 
-        println "País:"
-        def pais= scanner.nextLine()
+            println "Estado:"
+            def estado = scanner.nextLine()
 
-        println "Idade:"
-        def idade = scanner.nextInt()
-        scanner.nextLine() // limpa buffer
+            println "CEP:"
+            def cep = scanner.nextLine()
 
-        println "Estado:"
-        def estado = scanner.nextLine()
+            println "Descrição:"
+            def descricao = scanner.nextLine()
 
-        println "CEP:"
-        def cep = scanner.nextLine()
+            println "Skills (separadas por vírgula):"
+            def skillsInput = scanner.nextLine()
+            def skills = skillsInput.split(",")*.trim()
 
-        println "Descrição:"
-        def descricao = scanner.nextLine()
+            def novoUsuario = new User(
+                    nome: nome,
+                    sobrenome: sobrenome,
+                    email: email,
+                    telefone: telefone,
+                    data_nascimento: data_nascimento,
+                    pais: pais,
+                    cpf: cpf,
+                    idade: idade,
+                    estado: estado,
+                    cep: cep,
+                    descricao: descricao,
+                    skills: skills
+            )
 
-        println "Skills (separadas por vírgula):"
-        def skillsInput = scanner.nextLine()
-        def skills = skillsInput.split(",")*.trim()
+            service.cadastrarUsuario(novoUsuario)
 
-        def novoUsuario = new User(
-                nome: nome,
-                sobrenome: sobrenome,
-                email: email,
-                telefone: telefone,
-                data_nascimento: data_nascimento,
-                pais: pais,
-                cpf: cpf,
-                idade: idade,
-                estado: estado,
-                cep: cep,
-                descricao: descricao,
-                skills: skills
-                //falta senha
-        )
+            println "Candidato cadastrado com sucesso!"
 
-        service.cadastrarUsuario(novoUsuario)
-
-        println "Candidato cadastrado com sucesso!"
+        } catch (Exception e) {
+            println "Erro ao cadastrar usuário: ${e.message}"
+        }
     }
     void cadastroVaga() {
-        println "\n=== CADASTRO DE VAGA ==="
+        try {
+            println "\n=== CADASTRO DE VAGA ==="
 
-        println "Nome da Vaga (Ex: Desenvolvedor Backend):"
-        def nome = scanner.nextLine()
+            println "Nome da Vaga:"
+            def nome = scanner.nextLine()
 
-        println "Descrição da Vaga:"
-        def descricao = scanner.nextLine()
+            println "Descrição da Vaga:"
+            def descricao = scanner.nextLine()
 
+            int idEmpresa
+            try {
+                println "Digite o ID da Empresa:"
+                idEmpresa = scanner.nextInt()
+                scanner.nextLine()
+            } catch (Exception e) {
+                println "ID inválido! Digite um número."
+                scanner.nextLine()
+                return
+            }
 
-        println "Digite o ID da Empresa dona desta vaga (Verifique o ID lá no pgAdmin):"
-        def idEmpresa = scanner.nextInt()
-        scanner.nextLine()
+            def novaVaga = new Vaga(
+                    nome: nome,
+                    descricao: descricao,
+                    idEmpresa: idEmpresa
+            )
 
-        def novaVagaComIdEmpresa = new Vaga(
-                nome: nome,
-                descricao: descricao,
-                idEmpresa: idEmpresa
-        )
+            service.cadastrarVaga(novaVaga)
 
-        service.cadastrarVaga(novaVagaComIdEmpresa)
+            println "Vaga cadastrada com sucesso!"
 
-        println "Vaga cadastrada com sucesso para a empresa ID ${idEmpresa}!"
+        } catch (Exception e) {
+            println "Erro ao cadastrar vaga: ${e.message}"
+        }
     }
+
     void cadastrarCompetenciaManual() {
-        println "\n=== CADASTRO DE COMPETÊNCIA ==="
-        println "Nome da competência (ex: Java, Python, SQL):"
-        def nome = scanner.nextLine()
+        try {
+            println "\n=== CADASTRO DE COMPETÊNCIA ==="
+            println "Nome da competência:"
+            def nome = scanner.nextLine()
 
-        // adicionar verificador de competencia se existir.
+            def novaCompetencia = new Competencia(nome: nome)
+            service.salvarCompetencia(novaCompetencia)
 
-        def novaCompetencia = new Competencia(nome: nome)
-        service.salvarCompetencia(novaCompetencia)
+            println "Competência guardada com sucesso!"
 
-        println  "Competência guardada com sucesso!"
+        } catch (Exception e) {
+            println "Erro ao cadastrar competência: ${e.message}"
+        }
     }
-
 }
