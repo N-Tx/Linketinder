@@ -2,12 +2,13 @@ package dao
 
 import model.Competencia
 import model.User
-
+import database.DatabaseConnectionProvider
 class CandidatoDAO {
 
 
     int salvar(User candidato) {
-        def db = Conexao.getConexao()
+        def provider = DatabaseConnectionProvider.getProvider("postgres")
+        def db = provider.getConnection()
         int idGerado = -1
 
         if (db != null) {
@@ -33,15 +34,14 @@ class CandidatoDAO {
                 }
             } catch (Exception e) {
                 println " Erro ao salvar candidato no banco: ${e.message}"
-            } finally {
-                db.close()
             }
         }
         return idGerado
     }
 
     List<User> listar() {
-        def db = Conexao.getConexao()
+        def provider = DatabaseConnectionProvider.getProvider("postgres")
+        def db = provider.getConnection()
         List<User> lista = []
         if (db != null) {
             try {
@@ -59,15 +59,14 @@ class CandidatoDAO {
 
 
     void vincularCompetencia(int idCandidato, int idCompetencia) {
-        def db = Conexao.getConexao()
+        def provider = DatabaseConnectionProvider.getProvider("postgres")
+        def db = provider.getConnection()
         if (db != null) {
             try {
                 String query = "INSERT INTO candidato_competencia (candidato_id, competencia_id) VALUES (?, ?)"
                 db.executeInsert(query, [idCandidato, idCompetencia])
             } catch (Exception e) {
                 println "Erro ao vincular competência: ${e.message}"
-            } finally {
-                db.close()
             }
         }
     }

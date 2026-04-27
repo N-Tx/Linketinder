@@ -1,11 +1,13 @@
 package dao
 
 import model.Competencia
+import database.DatabaseConnectionProvider
 
 class CompetenciaDAO {
 
     void salvar(Competencia comp) {
-        def db = Conexao.getConexao()
+        def provider = DatabaseConnectionProvider.getProvider("postgres")
+        def db = provider.getConnection()
         if (db != null) {
             try {
                 String query = "INSERT INTO competencias (nome) VALUES (?)"
@@ -20,7 +22,8 @@ class CompetenciaDAO {
     }
 
     List<Competencia> listar() {
-        def db = Conexao.getConexao()
+        def provider = DatabaseConnectionProvider.getProvider("postgres")
+        def db = provider.getConnection()
         List<Competencia> lista = []
         if (db != null) {
             try {
@@ -29,15 +32,14 @@ class CompetenciaDAO {
                 }
             } catch (Exception e) {
                 println " Erro ao listar competências: ${e.message}"
-            } finally {
-                db.close()
             }
         }
         return lista
     } //...
 
     int salvarOuBuscarId(String nomeSkill) {
-        def db = Conexao.getConexao()
+        def provider = DatabaseConnectionProvider.getProvider("postgres")
+        def db = provider.getConnection()
         int idCompetencia = -1
 
         if (db != null) {
@@ -56,8 +58,6 @@ class CompetenciaDAO {
                 }
             } catch (Exception e) {
                 println " Erro ao buscar/salvar competência automática: ${e.message}"
-            } finally {
-                db.close()
             }
         }
         return idCompetencia

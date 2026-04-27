@@ -1,14 +1,17 @@
 package dao
 
+
 import model.Competencia
 import model.Enterprise
 import model.User
+import database.DatabaseConnectionProvider
 
 class EmpresaDAO {
 
 
     void salvar(Enterprise empresa){
-        def db = Conexao.getConexao()
+        def provider = DatabaseConnectionProvider.getProvider("postgres")
+        def db = provider.getConnection()
 
         if (db != null){
             try{
@@ -28,15 +31,14 @@ class EmpresaDAO {
 
             } catch (Exception e){
                 println "Erro ao tentar salvar no banco: ${e.message}"
-            } finally {
-                db.close()
             }
         }
 
     }
 
     List<Enterprise> listar() {
-        def db = Conexao.getConexao()
+        def provider = DatabaseConnectionProvider.getProvider("postgres")
+        def db = provider.getConnection()
         List<Enterprise> lista = []
         if (db != null) {
             try {
@@ -45,8 +47,6 @@ class EmpresaDAO {
                 }
             } catch (Exception e) {
                 println " Erro ao listar usuarios: ${e.message}"
-            } finally {
-                db.close()
             }
         }
         return lista
