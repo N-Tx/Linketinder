@@ -1,11 +1,8 @@
-package service
+package view
 
-import model.Competencia
-import model.Enterprise
-import model.User
-import model.Vaga
+
 import controller.MenuController
-import java.util.Scanner
+import service.CadastroService
 
 class Menu {
 
