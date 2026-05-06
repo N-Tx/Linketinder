@@ -37,16 +37,19 @@ class EmpresaDAO {
     }
 
     List<Enterprise> listar() {
-        def provider = DatabaseConnectionProvider.getProvider("postgres")
-        def db = provider.getConnection()
         List<Enterprise> lista = []
+        def provider = DatabaseConnectionProvider.getProvider("postgres")
+        def db = provider.getConnection() // Abre a conexão
+
         if (db != null) {
             try {
-                db.eachRow("SELECT * FROM empresa ORDER BY id") { row ->
+                db.eachRow("SELECT id, nome FROM empresa ORDER BY id") { row ->
                     lista << new Enterprise(id: row.id, nome: row.nome)
                 }
             } catch (Exception e) {
                 println " Erro ao listar usuarios: ${e.message}"
+            } finally {
+                db.close()
             }
         }
         return lista

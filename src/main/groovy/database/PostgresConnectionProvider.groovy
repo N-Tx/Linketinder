@@ -4,20 +4,19 @@ import groovy.sql.Sql
 
 class PostgresConnectionProvider implements ConnectionProvider {
 
-    private static Sql instance
-
-    private PostgresConnectionProvider() {}
-
     @Override
     Sql getConnection() {
-        if (instance == null) {
-            def url = 'jdbc:postgresql://localhost:5432/linketinder'
-            def user = 'tx'
-            def password = 'nathantx'
-            def driver = 'org.postgresql.Driver'
+        try {
+            String url = 'jdbc:postgresql://localhost:5432/linketinder'
+            String user = 'tx'
+            String password = 'nathantx'
+            String driver = 'org.postgresql.Driver'
 
-            instance = Sql.newInstance(url, user, password, driver)
+            // Retorna sempre uma nova instância
+            return Sql.newInstance(url, user, password, driver)
+        } catch (Exception e) {
+            println "Erro ao conectar ao banco: ${e.message}"
+            return null
         }
-        return instance
     }
 }

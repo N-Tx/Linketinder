@@ -6,7 +6,7 @@ import model.Enterprise
 import model.User
 import model.Vaga
 import service.CadastroService
-import java.util.Scanner
+
 
 class MenuController {
 
@@ -20,7 +20,7 @@ class MenuController {
 
     void listarCandidato() {
         println "\n==== Lista de candidatos ===="
-        def lista = service.buscarUser()
+        List<User> lista = service.buscarUser()
 
         if (lista.isEmpty()) {
             println "Nenhuma competência cadastrada no banco."
@@ -32,7 +32,7 @@ class MenuController {
     }
     void listarCompetencias() {
         println "\n=== CATÁLOGO DE COMPETÊNCIAS ==="
-        def lista = service.buscarCompetencias()
+        List<Competencia> lista = service.buscarCompetencias()
 
         if (lista.isEmpty()) {
             println "Nenhum candidato cadastrada no banco."
@@ -44,7 +44,7 @@ class MenuController {
     }
     void listarEmpresa() {
         println "\n==== Lista de Empresas ===="
-        def lista = service.buscarEmpresa()
+        List<Enterprise> lista = service.buscarEmpresa()
 
         if (lista.isEmpty()) {
             println "Nenhuma empresa cadastrada no banco."
@@ -57,34 +57,34 @@ class MenuController {
     void CadastroEnterprise() {
         try {
             println "Nome da empresa:"
-            def nome = scanner.nextLine()
+            String nome = scanner.nextLine()
 
             println "Email:"
-            def email = scanner.nextLine()
+            String email = scanner.nextLine()
 
             println "Telefone:"
-            def telefone = scanner.nextLine()
+            String telefone = scanner.nextLine()
 
             println "CNPJ:"
-            def cnpj = scanner.nextLine()
+            String cnpj = scanner.nextLine()
 
             println "País:"
-            def pais = scanner.nextLine()
+            String pais = scanner.nextLine()
 
             println "Estado:"
-            def estado = scanner.nextLine()
+            String estado = scanner.nextLine()
 
             println "CEP:"
-            def cep = scanner.nextLine()
+            String cep = scanner.nextLine()
 
             println "Descrição:"
-            def descricao = scanner.nextLine()
+            String descricao = scanner.nextLine()
 
             println "Skills (separadas por vírgula):"
-            def skillsInput = scanner.nextLine()
-            def skills = skillsInput.split(",")*.trim()
+            String skillsInput = scanner.nextLine()
+            List<String> skills = skillsInput.split(",")*.trim()
 
-            def novaEmpresa = new Enterprise(
+            Enterprise novaEmpresa = new Enterprise(
                     nome: nome,
                     email: email,
                     cnpj: cnpj,
@@ -108,25 +108,25 @@ class MenuController {
     void CadastroUser() {
         try {
             println "Nome do candidato:"
-            def nome = scanner.nextLine()
+            String nome = scanner.nextLine()
 
             println "Sobrenome"
-            def sobrenome = scanner.nextLine()
+            String sobrenome = scanner.nextLine()
 
             println "CPF:"
-            def cpf = scanner.nextLine()
+            String cpf = scanner.nextLine()
 
             println "Email:"
-            def email = scanner.nextLine()
+            String email = scanner.nextLine()
 
             println "Telefone:"
-            def telefone= scanner.nextLine()
+            String telefone= scanner.nextLine()
 
             println "Data de nascimento (yyyy-mm-dd):"
-            def data_nascimento= scanner.nextLine()
+            String data_nascimento= scanner.nextLine()
 
             println "País:"
-            def pais= scanner.nextLine()
+            String pais= scanner.nextLine()
 
             int idade
             try {
@@ -140,19 +140,19 @@ class MenuController {
             }
 
             println "Estado:"
-            def estado = scanner.nextLine()
+            String estado = scanner.nextLine()
 
             println "CEP:"
-            def cep = scanner.nextLine()
+            String cep = scanner.nextLine()
 
             println "Descrição:"
-            def descricao = scanner.nextLine()
+            String descricao = scanner.nextLine()
 
             println "Skills (separadas por vírgula):"
-            def skillsInput = scanner.nextLine()
-            def skills = skillsInput.split(",")*.trim()
+            String skillsInput = scanner.nextLine()
+            List<String> skills = skillsInput.split(",")*.trim()
 
-            def novoUsuario = new User(
+            User novoUsuario = new User(
                     nome: nome,
                     sobrenome: sobrenome,
                     email: email,
@@ -180,10 +180,10 @@ class MenuController {
             println "\n=== CADASTRO DE VAGA ==="
 
             println "Nome da Vaga:"
-            def nome = scanner.nextLine()
+            String nome = scanner.nextLine()
 
             println "Descrição da Vaga:"
-            def descricao = scanner.nextLine()
+            String descricao = scanner.nextLine()
 
             int idEmpresa
             try {
@@ -196,7 +196,7 @@ class MenuController {
                 return
             }
 
-            def novaVaga = new Vaga(
+            Vaga novaVaga = new Vaga(
                     nome: nome,
                     descricao: descricao,
                     idEmpresa: idEmpresa
@@ -215,9 +215,9 @@ class MenuController {
         try {
             println "\n=== CADASTRO DE COMPETÊNCIA ==="
             println "Nome da competência:"
-            def nome = scanner.nextLine()
+            String nome = scanner.nextLine()
 
-            def novaCompetencia = new Competencia(nome: nome)
+            Competencia novaCompetencia = new Competencia(nome: nome)
             service.salvarCompetencia(novaCompetencia)
 
             println "Competência guardada com sucesso!"
