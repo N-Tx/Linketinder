@@ -37,7 +37,6 @@ class CadastroServiceTest {
     }
 
 
-    //  USUÁRIO - SUCESSO
 
     @Test
     void deveCadastrarNovoUsuario() {
@@ -59,7 +58,6 @@ class CadastroServiceTest {
     }
 
 
-    // USUÁRIO - ERRO
 
     @Test
     void naoDeveVincularCompetenciaSeFalharAoSalvarUsuario() {
@@ -78,7 +76,6 @@ class CadastroServiceTest {
     }
 
 
-    //  MÚLTIPLAS SKILLS
     @Test
     void deveCadastrarUsuarioComMultiplasSkills() {
         def user = new User(
@@ -98,7 +95,6 @@ class CadastroServiceTest {
         verify(candidatoDAOMock).vincularCompetencia(1, 20)
     }
 
-    //  EMPRESA
 
     @Test
     void deveCadastrarEmpresa() {
@@ -114,7 +110,6 @@ class CadastroServiceTest {
     }
 
 
-    //  LISTAR USUÁRIOS
 
     @Test
     void deveListarUsuarios() {
@@ -129,8 +124,6 @@ class CadastroServiceTest {
     }
 
 
-    // LISTAR EMPRESAS
-
     @Test
     void deveListarEmpresas() {
         def listaMock = [new Enterprise(nome: "Empresa X")]
@@ -143,8 +136,6 @@ class CadastroServiceTest {
         assert resultado[0].nome == "Empresa X"
     }
 
-
-    // LISTAR COMPETÊNCIAS
 
     @Test
     void deveListarCompetencias() {
