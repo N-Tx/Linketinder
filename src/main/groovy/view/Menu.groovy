@@ -2,15 +2,13 @@ package view
 
 import controller.MenuController
 import model.*
-import service.CadastroService
 
 class Menu {
-
     Scanner scanner = new Scanner(System.in)
     MenuController controller
 
-    Menu(CadastroService service) {
-        this.controller = new MenuController(service)
+    Menu(MenuController controller) {
+        this.controller = controller
     }
 
     void iniciar() {
@@ -45,8 +43,6 @@ class Menu {
         }
     }
 
-    // --- MÉTODOS DE EXIBIÇÃO ---
-
     void exibirCandidatos() {
         println "\n==== LISTA DE CANDIDATOS ===="
         List<User> lista = controller.listarCandidatos()
@@ -77,28 +73,16 @@ class Menu {
         }
     }
 
-    // --- MÉTODOS DE ENTRADA DE DADOS ---
-
     void telaCadastroCandidato() {
         println "\n--- CADASTRO DE CANDIDATO ---"
-        println "Nome:"
-        String nome = scanner.nextLine()
-        println "Sobrenome:"
-        String sobrenome = scanner.nextLine()
-        println "Email:"
-        String email = scanner.nextLine()
-        println "CPF:"
-        String cpf = scanner.nextLine()
-        println "Data nascimento:"
-        String data_nasc = scanner.nextLine()
-        println "Telefone:"
-        String telefone = scanner.nextLine()
-        println "País"
-        String pais = scanner.nextLine()
-        println "CEP"
-        String cep = scanner.nextLine()
-
-
+        print "Nome: "; String nome = scanner.nextLine()
+        print "Sobrenome: "; String sobrenome = scanner.nextLine()
+        print "Email: "; String email = scanner.nextLine()
+        print "CPF: "; String cpf = scanner.nextLine()
+        print "Data nascimento: "; String data_nasc = scanner.nextLine()
+        print "Telefone: "; String telefone = scanner.nextLine()
+        print "País: "; String pais = scanner.nextLine()
+        print "CEP: "; String cep = scanner.nextLine()
 
         User novo = new User(nome: nome, sobrenome: sobrenome, email: email, cpf: cpf, data_nascimento: data_nasc, telefone: telefone, pais: pais, cep: cep)
         controller.cadastrarUsuario(novo)
@@ -107,26 +91,23 @@ class Menu {
 
     void telaCadastroEmpresa() {
         println "\n--- CADASTRO DE EMPRESA ---"
-        println "Nome da Empresa:"
-        String nome = scanner.nextLine()
-        println "CNPJ:"
-        String cnpj = scanner.nextLine()
-        println "Descrição:"
-        String desc = scanner.nextLine()
+        print "Nome da Empresa: "; String nome = scanner.nextLine()
+        print "CNPJ: "; String cnpj = scanner.nextLine()
+        print "Descrição: "; String desc = scanner.nextLine()
+        print "Telefone: "; String telefone = scanner.nextLine()
+        print "País: "; String pais = scanner.nextLine()
+        print "CEP: "; String cep = scanner.nextLine()
 
-        Enterprise nova = new Enterprise(nome: nome, cnpj: cnpj, descricao: desc, telefone: telefone, pais: pais, cep: cep, desc:descricao )
+        Enterprise nova = new Enterprise(nome: nome, cnpj: cnpj, descricao: desc, telefone: telefone, pais: pais, cep: cep)
         controller.cadastrarEmpresa(nova)
         println "Empresa cadastrada com sucesso!"
     }
 
     void telaCadastroVaga() {
         println "\n--- CADASTRO DE VAGA ---"
-        println "Nome da Vaga:"
-        String nome = scanner.nextLine()
-        println "Descrição:"
-        String desc = scanner.nextLine()
-        println "ID da Empresa:"
-        int idEmp = scanner.nextLine().toInteger()
+        print "Nome da Vaga: "; String nome = scanner.nextLine()
+        print "Descrição: "; String desc = scanner.nextLine()
+        print "ID da Empresa: "; int idEmp = scanner.nextLine().toInteger()
 
         Vaga vaga = new Vaga(nome: nome, descricao: desc, idEmpresa: idEmp)
         controller.cadastrarVaga(vaga)
@@ -135,8 +116,7 @@ class Menu {
 
     void telaCadastroCompetencia() {
         println "\n--- NOVA COMPETÊNCIA ---"
-        println "Nome da Competência:"
-        String nome = scanner.nextLine()
+        print "Nome da Competência: "; String nome = scanner.nextLine()
 
         Competencia comp = new Competencia(nome: nome)
         controller.cadastrarCompetencia(comp)

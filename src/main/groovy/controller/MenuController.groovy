@@ -1,59 +1,46 @@
 package controller
 
+import service.*
 import model.*
-import service.CadastroService
-import service.CandidatoService
-import service.CompetenciaService
-import service.EmpresaService
-import service.VagaService
 
 class MenuController {
+    private CandidatoService candidatoService
+    private EmpresaService empresaService
+    private VagaService vagaService
+    private CompetenciaService competenciaService
 
-    CandidatoService candidatoService
-    EmpresaService empresaService
-    CompetenciaService competenciaService
-    VagaService vagaService
-
-    MenuController(
-            CandidatoService candidatoService,
-            EmpresaService empresaService,
-            CompetenciaService competenciaService,
-            VagaService vagaService
-    ) {
-
-        this.candidatoService = candidatoService
-        this.empresaService = empresaService
-        this.competenciaService = competenciaService
-        this.vagaService = vagaService
+    MenuController(CandidatoService candidatoservice, EmpresaService empresaservice, VagaService vagaservice, CompetenciaService competenciaservice) {
+        this.candidatoService = candidatoservice
+        this.empresaService = empresaservice
+        this.vagaService = vagaservice
+        this.competenciaService = competenciaservice
     }
 
-    // Métodos de Listagem (Retornam listas para a View exibir)
-    List<User> listarCandidatos() {
-        return service.buscarUser()
+    void cadastrarUsuario(User user) {
+        candidatoService.cadastrarUsuario(user)
     }
 
-    List<Enterprise> listarEmpresas() {
-        return service.buscarEmpresa()
-    }
-
-    List<Competencia> listarCompetencias() {
-        return service.buscarCompetencias()
-    }
-
-    // Métodos de Cadastro (Recebem objetos prontos da View)
-    void cadastrarUsuario(User usuario) {
-        service.cadastrarUsuario(usuario)
-    }
-
-    void cadastrarEmpresa(Enterprise empresa) {
-        service.cadastrarEmpresa(empresa)
+    void cadastrarEmpresa(Enterprise enterprise) {
+        empresaService.cadastrarEmpresa(enterprise)
     }
 
     void cadastrarVaga(Vaga vaga) {
-        service.cadastrarVaga(vaga)
+        vagaService.cadastrarVaga(vaga)
     }
 
-    void cadastrarCompetencia(Competencia competencia) {
-        service.salvarCompetencia(competencia)
+    void cadastrarCompetencia(Competencia comp) {
+        competenciaService.salvarCompetencia(comp)
+    }
+
+    List<User> listarCandidatos() {
+        return candidatoService.buscarUsuarios()
+    }
+
+    List<Enterprise> listarEmpresas() {
+        empresaService.buscarEmpresas()
+    }
+
+    List<Competencia> listarCompetencias() {
+        competenciaService.buscarCompetencias()
     }
 }
