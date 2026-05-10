@@ -1,6 +1,9 @@
 plugins {
     id 'groovy'
     id 'application'
+    id 'war'
+    id 'org.gretty' version '3.1.0'
+
 }
 
 repositories {
@@ -14,7 +17,16 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
     testImplementation 'org.mockito:mockito-core:5.11.0'
+    providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
+
+gretty {
+    httpPort = 8080
+    contextPath = '/'
+    servletContainer = 'tomcat9'
+}
+
 test {
     useJUnitPlatform()
 }
