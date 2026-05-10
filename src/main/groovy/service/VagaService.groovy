@@ -14,4 +14,8 @@ class VagaService {
     void cadastrarVaga(Vaga vaga) {
         vagaDAO.salvar(vaga)
     }
+
+    List<Vaga> buscarVagas(){
+        return vagaDAO.listar()
+    }
 }

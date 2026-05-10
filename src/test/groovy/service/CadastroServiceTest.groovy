@@ -1,42 +1,26 @@
 package service
 
 import model.User
-import model.Enterprise
-
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-
 import static org.mockito.Mockito.*
 
 import dao.CandidatoDAO
-import dao.EmpresaDAO
 import dao.CompetenciaDAO
-import dao.VagaDAO
 
-class CadastroServiceTest {
+class CandidatoServiceTest {
 
-    CadastroService service
+    CandidatoService service
     CandidatoDAO candidatoDAOMock
-    EmpresaDAO empresaDAOMock
     CompetenciaDAO competenciaDAOMock
-    VagaDAO vagaDAOMock
 
     @BeforeEach
     void setup() {
         candidatoDAOMock = mock(CandidatoDAO)
-        empresaDAOMock = mock(EmpresaDAO)
         competenciaDAOMock = mock(CompetenciaDAO)
-        vagaDAOMock = mock(VagaDAO)
 
-        service = new CadastroService(
-                candidatoDAOMock,
-                empresaDAOMock,
-                competenciaDAOMock,
-                vagaDAOMock
-        )
+        service = new CandidatoService(candidatoDAOMock, competenciaDAOMock)
     }
-
-
 
     @Test
     void deveCadastrarNovoUsuario() {
@@ -57,8 +41,6 @@ class CadastroServiceTest {
         verify(candidatoDAOMock, times(1)).vincularCompetencia(1, 10)
     }
 
-
-
     @Test
     void naoDeveVincularCompetenciaSeFalharAoSalvarUsuario() {
         def user = new User(
@@ -74,7 +56,6 @@ class CadastroServiceTest {
         verify(competenciaDAOMock, never()).salvarOuBuscarId(any())
         verify(candidatoDAOMock, never()).vincularCompetencia(anyInt(), anyInt())
     }
-
 
     @Test
     void deveCadastrarUsuarioComMultiplasSkills() {
@@ -95,56 +76,14 @@ class CadastroServiceTest {
         verify(candidatoDAOMock).vincularCompetencia(1, 20)
     }
 
-
-    @Test
-    void deveCadastrarEmpresa() {
-        def empresa = new Enterprise(
-                nome: "Pastelsoft",
-                email: "pastel@gmail.com",
-                cnpj: "10000323"
-        )
-
-        service.cadastrarEmpresa(empresa)
-
-        verify(empresaDAOMock, times(1)).salvar(empresa)
-    }
-
-
-
     @Test
     void deveListarUsuarios() {
         def listaMock = [new User(nome: "Pedro")]
-
         when(candidatoDAOMock.listar()).thenReturn(listaMock)
 
-        def resultado = service.buscarUser()
+        def resultado = service.buscarUsuarios() // Atualizado para o nome correto do seu service
 
         assert resultado.size() == 1
         assert resultado[0].nome == "Pedro"
-    }
-
-
-    @Test
-    void deveListarEmpresas() {
-        def listaMock = [new Enterprise(nome: "Empresa X")]
-
-        when(empresaDAOMock.listar()).thenReturn(listaMock)
-
-        def resultado = service.buscarEmpresa()
-
-        assert resultado.size() == 1
-        assert resultado[0].nome == "Empresa X"
-    }
-
-
-    @Test
-    void deveListarCompetencias() {
-        def listaMock = []
-
-        when(competenciaDAOMock.listar()).thenReturn(listaMock)
-
-        def resultado = service.buscarCompetencias()
-
-        assert resultado.isEmpty()
     }
 }

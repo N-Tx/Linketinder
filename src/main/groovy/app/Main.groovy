@@ -2,34 +2,28 @@ package app
 
 import dao.*
 import service.*
-import controller.MenuController
+import controller.*
 import view.Menu
 
 class Main {
-
     static void main(String[] args) {
-        // Iniciar DAOs com tipos explícitos
-        CandidatoDAO candidatoDAO = new CandidatoDAO()
-        EmpresaDAO empresaDAO = new EmpresaDAO()
-        CompetenciaDAO competenciaDAO = new CompetenciaDAO()
-        VagaDAO vagaDAO = new VagaDAO()
 
-        // Iniciar Novos Services com tipos explícitos
-        CandidatoService candidatoService = new CandidatoService(candidatoDAO, competenciaDAO)
-        EmpresaService empresaService = new EmpresaService(empresaDAO)
-        VagaService vagaService = new VagaService(vagaDAO)
-        CompetenciaService competenciaService = new CompetenciaService(competenciaDAO)
+        CandidatoDAO cDAO = new CandidatoDAO()
+        EmpresaDAO eDAO = new EmpresaDAO()
+        CompetenciaDAO compDAO = new CompetenciaDAO()
+        VagaDAO vDAO = new VagaDAO()
 
-        // Montar Controller
-        MenuController controller = new MenuController(
-                candidatoService,
-                empresaService,
-                vagaService,
-                competenciaService
-        )
+        CandidatoService cSrv = new CandidatoService(cDAO, compDAO)
+        EmpresaService eSrv = new EmpresaService(eDAO)
+        VagaService vSrv = new VagaService(vDAO)
+        CompetenciaService compSrv = new CompetenciaService(compDAO)
 
-        // Iniciar Menu
-        Menu menu = new Menu(controller)
+        CandidatoController cCtrl = new CandidatoController(cSrv)
+        EmpresaController eCtrl = new EmpresaController(eSrv)
+        VagaController vCtrl = new VagaController(vSrv)
+        CompetenciaController compCtrl = new CompetenciaController(compSrv)
+
+        Menu menu = new Menu(cCtrl, eCtrl, vCtrl, compCtrl)
         menu.iniciar()
     }
 }
